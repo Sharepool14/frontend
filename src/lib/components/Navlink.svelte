@@ -1,32 +1,31 @@
 <script lang="ts">
-    import { afterNavigate } from "$app/navigation";
-    import { page } from "$app/stores";
-    import { onMount } from "svelte";
+	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
+	let thisAnchor: HTMLAnchorElement;
+	export let href: string;
+	export let navTitle: string;
 
-    let thisAnchor:HTMLAnchorElement;
-    export let href:string;
-    export let navTitle:string;
+	const updateActive = () => {
+		if (href === $page.url.pathname) {
+			thisAnchor.setAttribute('current-route', '');
+		} else {
+			thisAnchor.removeAttribute('current-route');
+		}
+	};
 
-    const updateActive = () => {
-        if(href===$page.url.pathname){
-            thisAnchor.setAttribute('current-route', '');
-        } else {
-            thisAnchor.removeAttribute('current-route')
-        }
-    }
+	onMount(() => {
+		updateActive();
+	});
 
-    onMount(() => {
-        updateActive();
-    })
-
-    afterNavigate(() => {
-        updateActive();
-    })
+	afterNavigate(() => {
+		updateActive();
+	});
 </script>
 
 <li>
-    <a {href} bind:this={thisAnchor}>{navTitle}</a>
+	<a {href} bind:this={thisAnchor}>{navTitle}</a>
 </li>
 
 <style lang="postcss">

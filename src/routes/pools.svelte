@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Animate from '$lib/widgets/Animate.svelte';
+	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
 	const pageTitle = 'Pools';
 </script>
 

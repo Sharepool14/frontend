@@ -41,7 +41,7 @@
 	<button class="modal__close m-x0_5" on:click={closeModal}>
 		<Fa icon={closeIcon} scale={1.35} fw />
 	</button>
-	<main class="modal__content mt-x0_5 p-x2">
+	<main class="modal__content p-x2">
 		<slot />
 	</main>
 </dialog>

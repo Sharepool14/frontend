@@ -1,5 +1,7 @@
 <script lang="ts">
+	import Login from '$lib/components/auth/Login.svelte';
 	import Navlink from '$lib/components/Navlink.svelte';
+	import SignUp from '$lib/components/auth/SignUp.svelte';
 	import Modal from '$lib/widgets/Modal.svelte';
 	import Navbar from '$lib/widgets/Navbar.svelte';
 </script>
@@ -12,8 +14,12 @@
 		<Navlink href="/contact" navTitle="Contact" />
 	</Navbar>
 	<div class="mr-x1">
-		<Modal modalButtonTitle="Log in" />
-		<Modal modalButtonTitle="Sign up" />
+		<Modal modalButtonTitle="Log in">
+			<Login />
+		</Modal>
+		<Modal modalButtonTitle="Sign up">
+			<SignUp />
+		</Modal>
 	</div>
 </header>
 
