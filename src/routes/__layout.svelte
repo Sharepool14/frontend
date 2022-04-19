@@ -8,9 +8,12 @@
 	<Navbar>
 		<Navlink href="/" navTitle="Home" />
 		<Navlink href="/pools" navTitle="Pools" />
+		<Navlink href="/about" navTitle="About" />
+		<Navlink href="/contact" navTitle="Contact" />
 	</Navbar>
 	<div class="mr-x1">
 		<Modal modalButtonTitle="Log in" />
+		<Modal modalButtonTitle="Sign up" />
 	</div>
 </header>
 

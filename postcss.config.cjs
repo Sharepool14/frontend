@@ -1,7 +1,5 @@
 module.exports = {
 	plugins: [
-		require('postcss-nested'),
-		require('autoprefixer'),
 		require('@postcss-plugins/token-utility')({
 			spacing: {
 				auto: 'auto',
@@ -20,6 +18,8 @@ module.exports = {
 				x10: '10rem'
 			}
 		}),
-		require('cssnano')
+		require('autoprefixer'),
+		require('cssnano'),
+		require('postcss-nested')
 	]
 };
