@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Input from '../widgets/Input.svelte';
-	import Form from '../widgets/Form.svelte';
+	import Input from '$lib/widgets/Input.svelte';
+	import Form from '$lib/widgets/Form.svelte';
 	let login: Authentication;
 	login = { password: '', email: '' } 
 </script>

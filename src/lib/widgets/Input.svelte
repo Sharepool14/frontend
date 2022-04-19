@@ -15,7 +15,7 @@
 
 <label class="mb-x1">
 	<slot />
-	<input use:setType bind:value {required} bind:this={inputRef}/>
+	<input use:setType bind:value={value} {required} bind:this={inputRef}/>
 </label>
 
 <style lang="postcss">

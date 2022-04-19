@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { transitionCleanup } from '../../typescript/ts/global';
+	import { transitionCleanup } from '../../../typescript/ts/global';
 	import { fade } from 'svelte/transition';
 	export let annimationSpeed = 250;
 </script>
