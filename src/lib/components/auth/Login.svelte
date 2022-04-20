@@ -4,6 +4,7 @@
 	import {hasAccess} from '../../../typescript/data/auth.store'
 	let login: Authentication;
 	login = { password: '', email: '' } 
+	/*
 	const url = "http://localhost:8080";
 
 	const handleLogin = async () => {
@@ -23,11 +24,15 @@
 		}
 		
 	}
+	*/
+	const handleLogin = () => {
+		alert(`Mail entered: ${login.email}; Password entered: ${login.password}`)
+	}
 </script>
 
 {#if !$hasAccess}
 <Form title="Log in" on:submitForm={handleLogin}>
-	<Input type="text" bind:value={login.email}>Email</Input>
+	<Input type="email" bind:value={login.email}>Email</Input>
 	<Input type="password" bind:value={login.password}>Password</Input>
 </Form>
 {:else}

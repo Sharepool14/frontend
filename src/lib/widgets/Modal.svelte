@@ -48,9 +48,11 @@
 
 <style lang="postcss">
 	.modal {
+		border: 2px solid rgb(255, 0, 204);
+		box-shadow: 0 0 50px 0 rgba(255, 0, 204, 0.3);
+		background-color: transparent;
 		&::backdrop {
 			backdrop-filter: blur(5px);
-			background-color: rgba(0 0% 0% / 0.3);
 		}
 		&__close {
 			position: absolute;
@@ -61,6 +63,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			background-color: hsl(0 100% 100% / 0.05);
 		}
 	}
 </style>

@@ -37,6 +37,12 @@
 		}
 	}
 
+	:global(:root){
+		--bg-color: hsl(291 70% 10%);
+		--text-color: hsl(0 100% 100%);
+		--secondary: hsl();
+	}
+
 	:global(*, *::before, *::after) {
 		box-sizing: border-box;
 		margin: 0;
@@ -47,6 +53,15 @@
 
 	:global(html) {
 		overflow: hidden;
+	}
+
+	:global(body) {
+		background-color: var(--bg-color);
+	}
+
+	:global(h1, h2, h3, h4, a, p, button, label) {
+		color: var(--text-color);
+		font-family: sans-serif;
 	}
 
 	:global(ol, ul) {

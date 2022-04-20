@@ -14,10 +14,15 @@
 		address: ''
 	};
 
-	const handleSubmit = async () => {
-		if (signUp.password!=undefined) {
-			console.log(JSON.stringify(signUp));
-		}
+	const handleSubmit = () => {
+		alert(`
+mail: ${signUp.email},
+password: ${signUp.password},
+first name: ${signUp.firstName},
+last name: ${signUp.lastName},
+city: ${signUp.city},
+zip code: ${signUp.zipCode},
+address: ${signUp.address}`)
 	};
 </script>
 

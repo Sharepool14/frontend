@@ -32,13 +32,12 @@
 	li {
 		a {
 			position: relative;
-			color: black;
 			text-decoration: none;
 
 			&::after {
 				position: absolute;
 				content: '';
-				background-color: black;
+				background-color: rgb(255, 0, 204);
 				top: 1rem;
 				bottom: -0.15rem;
 				left: 0;
