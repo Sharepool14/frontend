@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
-	const pageTitle = 'Home';
+	const pageTitle = 'Contact';
 </script>
 
 <svelte:head>
