@@ -2,7 +2,7 @@
 	export let type: string;
 	export let value: string | number | Date;
 	export let required = true;
-	export let inputRef:HTMLInputElement = undefined;
+	export let inputRef: HTMLInputElement = undefined;
 
 	const setType = (node) => {
 		if (['submit', 'reset', 'button'].includes(type)) {
@@ -15,15 +15,20 @@
 
 <label class="mb-x1">
 	<slot />
-	<input use:setType bind:value {required} bind:this={inputRef}/>
+	<input use:setType bind:value {required} bind:this={inputRef} />
 </label>
 
 <style lang="postcss">
 	label {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 		input {
-			border: 1px solid black;
+			&[type='text'],
+			&[type='email'],
+			&[type='password'] {
+				width: min(100px, 100%);
+			}
 		}
 	}
 </style>

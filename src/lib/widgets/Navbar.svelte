@@ -1,4 +1,8 @@
-<nav class="m-x1">
+<script lang="ts">
+	import { fade } from 'svelte/transition';
+</script>
+
+<nav class="m-x1" in:fade>
 	<ul>
 		<slot />
 	</ul>

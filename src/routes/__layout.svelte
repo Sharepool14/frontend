@@ -37,45 +37,63 @@
 		}
 	}
 
-	:global(:root){
-		--bg-color: hsl(291 70% 10%);
-		--text-color: hsl(0 100% 100%);
-		--secondary: hsl();
-	}
+	:global {
+		:root {
+			--text-color: hsl(0 100% 100%);
+			--stage: hsl(291 70% 10%);
+			--primary: hsl(291 90% 60%);
+			--secondary: hsl(176 90% 60%);
+		}
 
-	:global(*, *::before, *::after) {
-		box-sizing: border-box;
-		margin: 0;
-		border: 0;
-		padding: 0;
-		text-decoration: none;
-	}
+		* {
+			max-width: 100%;
+			max-width: 100%;
+		}
 
-	:global(html) {
-		overflow: hidden;
-	}
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			border: 0;
+			padding: 0;
+			text-decoration: none;
+		}
 
-	:global(body) {
-		background-color: var(--bg-color);
-	}
+		html {
+			scroll-behavior: smooth;
+		}
 
-	:global(h1, h2, h3, h4, a, p, button, label) {
-		color: var(--text-color);
-		font-family: sans-serif;
-	}
+		body {
+			background-color: var(--stage);
+		}
 
-	:global(ol, ul) {
-		list-style: none;
-	}
+		h1,
+		h2,
+		h3,
+		h4,
+		a,
+		p,
+		button,
+		label {
+			color: var(--text-color);
+			font-family: sans-serif;
+		}
 
-	:global(button) {
-		background: unset;
-		border-width: 0;
-		cursor: pointer;
-		width: fit-content;
-	}
+		ol,
+		ul {
+			list-style: none;
+		}
 
-	:global(button[disabled]) {
-		cursor: not-allowed;
+		button {
+			background: unset;
+			border-width: 0;
+			cursor: pointer;
+			width: fit-content;
+		}
+
+		button[disabled] {
+			cursor: not-allowed;
+		}
 	}
 </style>

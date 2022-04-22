@@ -22,16 +22,26 @@ first name: ${signUp.firstName},
 last name: ${signUp.lastName},
 city: ${signUp.city},
 zip code: ${signUp.zipCode},
-address: ${signUp.address}`)
+address: ${signUp.address}`);
 	};
 </script>
 
 <Form title="Sign up" on:submitForm={handleSubmit}>
 	<Input type="email" bind:value={signUp.email}>Email</Input>
-	<Password bind:value={signUp.password}/>
-	<Input type="text" bind:value={signUp.firstName}>First name</Input>
-	<Input type="text" bind:value={signUp.lastName}>Last name</Input>
+	<div>
+	<Password bind:value={signUp.password} />
+	</div>
+	<div>
+		<Input type="text" bind:value={signUp.firstName}>First name</Input>
+		<Input type="text" bind:value={signUp.lastName}>Last name</Input>
+	</div>
 	<Input type="text" bind:value={signUp.city}>City</Input>
 	<Input type="text" bind:value={signUp.zipCode}>Zip code</Input>
-	<Input type="text" bind:value={signUp.address}>Street and number</Input>
+	<Input type="text" bind:value={signUp.address}>Address</Input>
 </Form>
+
+<style lang="postcss">
+	div {
+		columns: 2 150px;
+	}
+</style>
