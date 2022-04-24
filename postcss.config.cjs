@@ -15,11 +15,11 @@ module.exports = {
 				x7: '7rem',
 				x8: '8rem',
 				x9: '9rem',
-				x10: '10rem'
-			}
+				x10: '10rem',
+			},
 		}),
 		require('autoprefixer'),
 		require('cssnano'),
-		require('postcss-nested')
-	]
+		require('postcss-nested'),
+	],
 };

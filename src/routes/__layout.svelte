@@ -4,7 +4,14 @@
 	import SignUp from '$lib/components/auth/SignUp.svelte';
 	import Modal from '$lib/widgets/Modal.svelte';
 	import Navbar from '$lib/widgets/Navbar.svelte';
+	import { page } from '$app/stores';
 </script>
+
+<svelte:head>
+	<!-- prettier-ignore -->
+	<meta name="description" content={$page.stuff.description}>
+	<title>{$page.stuff.title}</title>
+</svelte:head>
 
 <header>
 	<Navbar>
@@ -13,8 +20,8 @@
 		<Navlink href="/about" navTitle="About" />
 		<Navlink href="/contact" navTitle="Contact" />
 	</Navbar>
-	<div class="mr-x1">
-		<Modal modalButtonTitle="Log in">
+	<div class="mr-x1 ml-x2 mt-auto mb-auto">
+		<Modal modalButtonTitle="Log in" important={false}>
 			<Login />
 		</Modal>
 		<Modal modalButtonTitle="Sign up">
@@ -23,18 +30,23 @@
 	</div>
 </header>
 
-<main class="pl-x4 pr-x4">
+<main class="ml-x2 mr-x2">
 	<slot />
 </main>
 
 <style lang="postcss">
 	header {
+		font-size: 1.1rem;
 		display: flex;
 		justify-content: right;
 		div {
 			display: flex;
-			gap: 1rem;
+			gap: 0.5rem;
 		}
+	}
+	main {
+		display: flex;
+		flex-direction: column;
 	}
 
 	:global {
@@ -48,6 +60,7 @@
 		* {
 			max-width: 100%;
 			max-width: 100%;
+			z-index: unset;
 		}
 
 		*,
@@ -58,6 +71,8 @@
 			border: 0;
 			padding: 0;
 			text-decoration: none;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
 		}
 
 		html {
@@ -66,6 +81,8 @@
 
 		body {
 			background-color: var(--stage);
+			overflow-x: hidden;
+			overflow-y: scroll;
 		}
 
 		h1,

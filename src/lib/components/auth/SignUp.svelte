@@ -11,7 +11,7 @@
 		lastName: '',
 		city: '',
 		zipCode: '',
-		address: ''
+		address: '',
 	};
 
 	const handleSubmit = () => {
@@ -26,18 +26,18 @@ address: ${signUp.address}`);
 	};
 </script>
 
-<Form title="Sign up" on:submitForm={handleSubmit}>
-	<Input type="email" bind:value={signUp.email}>Email</Input>
+<Form title="Sign up" on:submitForm="{handleSubmit}">
+	<Input type="email" bind:value="{signUp.email}">Email</Input>
 	<div>
-	<Password bind:value={signUp.password} />
+		<Password bind:value="{signUp.password}" />
 	</div>
 	<div>
-		<Input type="text" bind:value={signUp.firstName}>First name</Input>
-		<Input type="text" bind:value={signUp.lastName}>Last name</Input>
+		<Input type="text" bind:value="{signUp.firstName}">First name</Input>
+		<Input type="text" bind:value="{signUp.lastName}">Last name</Input>
 	</div>
-	<Input type="text" bind:value={signUp.city}>City</Input>
-	<Input type="text" bind:value={signUp.zipCode}>Zip code</Input>
-	<Input type="text" bind:value={signUp.address}>Address</Input>
+	<Input type="text" bind:value="{signUp.city}">City</Input>
+	<Input type="text" bind:value="{signUp.zipCode}">Zip code</Input>
+	<Input type="text" bind:value="{signUp.address}">Address</Input>
 </Form>
 
 <style lang="postcss">

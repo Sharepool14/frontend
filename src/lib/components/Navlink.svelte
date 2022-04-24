@@ -38,8 +38,8 @@
 				position: absolute;
 				content: '';
 				background-color: rgb(255, 0, 204);
-				top: 1rem;
-				bottom: -0.15rem;
+				top: 95%;
+				bottom: -10%;
 				left: 0;
 				right: 0;
 				border-radius: 3px;

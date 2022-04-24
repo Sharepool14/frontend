@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let attatch: 'global' | 'local' = 'local';
+	export let attatch: 'global' | 'local' | 'scroll' = 'local';
 </script>
 
 <div class={attatch}>
@@ -41,11 +41,19 @@
 			background-attachment: local;
 		}
 	}
+
 	.global {
 		&::before,
 		&::after {
 			background-attachment: fixed;
-			background-image: linear-gradient(60deg, var(--primary), var(--secondary));
+			background-image: linear-gradient(70deg, var(--primary), var(--stage), var(--secondary));
+		}
+	}
+
+	.scroll {
+		&::before,
+		&::after {
+			background-attachment: scroll;
 		}
 	}
 </style>

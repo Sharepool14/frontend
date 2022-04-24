@@ -1,12 +1,17 @@
-<script lang="ts">
-	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
-	const pageTitle = 'Contact';
+<script lang="ts" context="module">
+	export async function load({ stuff }) {
+		stuff.title = 'Contact';
+		return {
+			stuff,
+		};
+	}
 </script>
 
-<svelte:head>
-	<title>{pageTitle}</title>
-</svelte:head>
+<script lang="ts">
+	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
+</script>
 
 <Animate>
-	<h1>{pageTitle}</h1>
+	<h1>Contact</h1>
+	<p>some stuff</p>
 </Animate>

@@ -21,7 +21,7 @@
 	});
 </script>
 
-<Input type="password" bind:value={one}>
+<Input type="password" bind:value="{one}">
 	<span
 		>Password
 		{#if missmatch}
@@ -29,7 +29,7 @@
 		{/if}
 	</span>
 </Input>
-<Input type="password" bind:value={two} bind:inputRef={confirm}>
+<Input type="password" bind:value="{two}" bind:inputRef="{confirm}">
 	<span
 		>Confirm Password
 		{#if missmatch}
