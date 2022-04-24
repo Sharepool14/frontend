@@ -31,29 +31,35 @@
 		width: fit-content;
 		height: fit-content;
 		font-size: inherit;
+
+		transition: transform 150ms ease-in-out;
+		&:hover {
+			transform: scale(1.05);
+		}
 		span {
 			font-size: inherit;
 			text-transform: capitalise;
-			padding: 0.75ch 0.75rem;
+			padding: 0.4em;
 			&:hover {
-				animation: 2.5s ease hoverColor infinite;
+				background-image: var(--background-gradient);
 				background-clip: text;
 				color: transparent;
 			}
 		}
 
 		&.important {
-			font-weight: ;
+			font-weight: 600;
+			&:hover {
+				transform: translateY(0.15rem);
+			}
 			span {
 				color: var(--stage);
-				font-weight: 600;
 				border-radius: var(--border-radius);
 				background-image: var(--background-gradient);
 				background-repeat: no-repeat;
 				&:hover {
 					color: transparent;
 					.important::before {
-						animation: 2.5s ease hoverColor infinite;
 						background-image: none;
 					}
 				}
@@ -66,35 +72,17 @@
 				content: '';
 			}
 			&::before {
-				inset: -0.05ch -0.05rem;
+				inset: -0.05em -0.05em;
 				background-image: var(--background-gradient);
 
 				border-radius: calc(var(--border-radius) * 1.05);
 			}
 			&::after {
-				inset: 0.05ch 0.05rem;
+				inset: 0.05em 0.05em;
 				background-color: var(--stage);
 
 				border-radius: calc(var(--border-radius));
 			}
-		}
-	}
-
-	@keyframes hoverColor {
-		0% {
-			background-color: var(--primary);
-		}
-		25% {
-			background-color: var(--secondary);
-		}
-		50% {
-			background-color: var(--secondary);
-		}
-		75% {
-			background-color: var(--primary);
-		}
-		100% {
-			background-color: var(--primary);
 		}
 	}
 </style>

@@ -8,6 +8,7 @@
 </script>
 
 <script lang="ts">
+	import BorrowPost from '$lib/components/BorrowPost.svelte';
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
 	import Card from '$lib/widgets/Card.svelte';
 	let cards = new Array<string>(100);
@@ -19,6 +20,12 @@
 		<p>some stuff</p>
 	</header>
 	<section class="posts ml-auto mr-auto">
+		<BorrowPost
+			title="An item"
+			description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
+						quia obcaecati alias."
+			borrowed={true}
+		/>
 		{#each cards as card}
 			<Card>
 				<div class="post p-x2">
@@ -37,20 +44,13 @@
 <style lang="postcss">
 	.posts {
 		display: grid;
-		grid-template-columns: repeat(1, minmax(35vw, 300px));
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 		gap: 2rem;
 
-		@media screen and (min-width: 600px) {
-			grid-template-columns: repeat(2, minmax(35vw, 300px));
-		}
+		width: 80vw;
 
-		@media screen and (min-width: 1200px) {
-			grid-template-columns: repeat(3, minmax(30vw, 200px));
-		}
-
-		@media screen and (min-width: 1800px) {
-			grid-template-columns: repeat(4, minmax(20vw, 200px));
-			gap: 4rem;
+		@media screen and (min-width: 1440px) {
+			width: 70vw;
 		}
 	}
 
