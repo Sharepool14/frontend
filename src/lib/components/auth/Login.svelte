@@ -18,7 +18,6 @@
 				body: JSON.stringify(login),
 			});
 			let data = await response.json();
-			console.log(data);
 		} catch (err) {
 			console.error(err);
 		}
