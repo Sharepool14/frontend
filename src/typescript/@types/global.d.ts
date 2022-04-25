@@ -4,7 +4,7 @@ declare interface HTMLDialogElement extends HTMLElement {
 }
 
 declare interface Authentication {
-	email: string;
+	username: string;
 	password: string;
 }
 

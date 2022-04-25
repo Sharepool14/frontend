@@ -1,18 +1,39 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import {
+		millisToDays,
+		millisToHours,
+		millisToMinutes,
+		millisToSeconds,
+		time,
+	} from '../../typescript/data/clock.store';
 	import { tweened } from 'svelte/motion';
+	import { writable } from 'svelte/store';
+	import { linear } from 'svelte/easing';
 
-	const borrowDate = new Date('2022-04-20');
-	const returnDate = new Date('2022-04-30');
+	const borrowDate = new Date('2022-04-24T16:40:00');
+	const borrowDateTime = borrowDate.getTime();
+	const returnDate = new Date('2022-04-26T17:00:00');
+	const returnDateTime = returnDate.getTime();
 
-	const elapsedTime = tweened<number>();
-	const daysToReturn = tweened<number>();
-
-	onMount(() => {
-		$elapsedTime =
-			((Date.now() - borrowDate.getTime()) / (returnDate.getTime() - borrowDate.getTime())) * 253;
-		$daysToReturn = (returnDate.getTime() - Date.now()) / (1000 * 3600 * 24);
+	const progress = tweened<number>(253, { duration: 1000 });
+	const returnedIn = writable({
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
 	});
+
+	const getProgressRatioOffset = (ms: number) => {
+		return Math.round(((ms - borrowDateTime) / (returnDateTime - borrowDateTime)) * 253);
+	};
+
+	$: {
+		$progress = getProgressRatioOffset($time);
+		$returnedIn.seconds = millisToSeconds(returnDateTime - $time);
+		$returnedIn.minutes = millisToMinutes(returnDateTime - $time);
+		$returnedIn.hours = millisToHours(returnDateTime - $time);
+		$returnedIn.days = millisToDays(returnDateTime - $time);
+	}
 </script>
 
 <div class="circular ml-auto mr-auto">
@@ -23,16 +44,20 @@
 				<stop offset="100%" stop-color="#3df5e9" />
 			</linearGradient>
 		</defs>
-		<circle
-			cx="50"
-			cy="50"
-			r="40"
-			stroke-linecap="round"
-			stroke-dashoffset={Math.round($elapsedTime)}
-		/>
+		<circle cx="50" cy="50" r="40" stroke-linecap="round" stroke-dashoffset={$progress} />
 	</svg>
 	<div class="circular__days">
-		<p>Returned in<br /><strong>{Math.round($daysToReturn)} days</strong></p>
+		<p>
+			{#if $returnedIn.seconds >= 0}
+				Returned in<br />
+				{#if $returnedIn.days > 0}{$returnedIn.days}<b>d</b>{/if}
+				{#if $returnedIn.hours > 0}{$returnedIn.hours}<b>h</b>{/if}
+				{#if $returnedIn.minutes > 0}{$returnedIn.minutes}<b>m</b>{/if}
+				{$returnedIn.seconds}<b>s</b>
+			{:else}
+				Overdue
+			{/if}
+		</p>
 	</div>
 </div>
 
