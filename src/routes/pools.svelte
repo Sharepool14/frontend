@@ -26,6 +26,12 @@
 						quia obcaecati alias."
 			borrowed={true}
 		/>
+		<BorrowPost
+			title="An item"
+			description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
+						quia obcaecati alias."
+			borrowed={false}
+		/>
 		{#each cards as card}
 			<Card>
 				<div class="post p-x2">
@@ -44,7 +50,7 @@
 <style lang="postcss">
 	.posts {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: 2rem;
 
 		width: 80vw;
