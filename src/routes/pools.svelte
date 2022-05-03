@@ -11,7 +11,7 @@
 	import BorrowPost from '$lib/components/BorrowPost.svelte';
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
 	import Card from '$lib/widgets/Card.svelte';
-	let cards = new Array<string>(100);
+	let cards = new Array<string>(50);
 </script>
 
 <Animate>
@@ -19,30 +19,20 @@
 		<h1>Pools</h1>
 		<p>some stuff</p>
 	</header>
-	<section class="posts ml-auto mr-auto">
-		<BorrowPost
-			title="An item"
-			description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
-						quia obcaecati alias."
-			borrowed={true}
-		/>
-		<BorrowPost
-			title="An item"
-			description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
-						quia obcaecati alias."
-			borrowed={false}
-		/>
+	<section class="posts minl-auto mb-x2">
 		{#each cards as card}
-			<Card>
-				<div class="post p-x2">
-					<h1 class="post__title">A post</h1>
-					<p class="post__description">
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
-						quia obcaecati alias illo perferendis sequi eius molestiae odio modi voluptatem veniam
-						amet laborum a, eos magni iure.
-					</p>
-				</div>
-			</Card>
+			<BorrowPost
+				title="An item"
+				description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
+						quia obcaecati alias."
+				borrowed={true}
+			/>
+			<BorrowPost
+				title="An item"
+				description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
+						quia obcaecati alias."
+				borrowed={false}
+			/>
 		{/each}
 	</section>
 </Animate>
