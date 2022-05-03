@@ -14,13 +14,14 @@
 <h1 class="mb-x1">{title}</h1>
 <form on:submit|preventDefault={notify} style="width: {width}">
 	<slot />
-	<Button type="submit" styling="ml-auto mr-auto">Confirm</Button>
+	<span class="mt-x1"><Button type="submit" styling="ml-auto mr-auto">Confirm</Button></span>
 </form>
 
 <style lang="postcss">
 	form {
 		display: flex;
 		flex-direction: column;
+
 		&:invalid button {
 			cursor: not-allowed;
 		}

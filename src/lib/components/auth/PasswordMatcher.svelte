@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Animate from '$lib/widgets/animation/AnimateInline.svelte';
 	import Input from '$lib/widgets/Input.svelte';
+	import InputField from '../InputField.svelte';
 	import { afterUpdate } from 'svelte';
 	let one: string;
 	let two: string;
@@ -21,25 +22,11 @@
 	});
 </script>
 
-<Input type="password" bind:value="{one}">
-	<span
-		>Password
-		{#if missmatch}
-			<Animate><i>*</i></Animate>
-		{/if}
-	</span>
-</Input>
-<Input type="password" bind:value="{two}" bind:inputRef="{confirm}">
-	<span
-		>Confirm Password
-		{#if missmatch}
-			<Animate><i>*</i></Animate>
-		{/if}
-	</span>
-</Input>
-
-<style lang="postcss">
-	i {
-		color: var(--secondary);
-	}
-</style>
+<InputField placeholder="Enter password" type="password" required={true} bind:value={one} />
+<InputField
+	placeholder="Confirm password"
+	type="password"
+	required={true}
+	bind:value={two}
+	bind:inputRef={confirm}
+/>
