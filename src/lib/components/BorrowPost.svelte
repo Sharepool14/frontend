@@ -7,7 +7,7 @@
 	export let borrowed: boolean;
 </script>
 
-<Card>
+<Card hoverable={true}>
 	<div>
 		<h1>{title}</h1>
 		{#if borrowed}
