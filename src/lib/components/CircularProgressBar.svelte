@@ -10,12 +10,12 @@
 	import { writable } from 'svelte/store';
 	import { linear } from 'svelte/easing';
 
-	const borrowDate = new Date('2022-04-24T16:40:00');
+	const borrowDate = new Date('2022-04-26T02:00:00');
 	const borrowDateTime = borrowDate.getTime();
-	const returnDate = new Date('2022-04-26T17:00:00');
+	const returnDate = new Date('2022-04-27T02:00:00');
 	const returnDateTime = returnDate.getTime();
 
-	const progress = tweened<number>(253, { duration: 1000 });
+	const progress = tweened<number>(0, { duration: 1000 });
 	const returnedIn = writable({
 		days: 0,
 		hours: 0,
