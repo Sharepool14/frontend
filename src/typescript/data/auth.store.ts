@@ -16,8 +16,7 @@ export const authenticate = async (login: Authentication) => {
 		let response = await fetch(url + '/login', {
 			method: 'POST',
 			headers: {
-				Host: url,
-				'contnent-type': 'application/json',
+				'content-type': 'application/json',
 			},
 			body: JSON.stringify(login),
 		});
@@ -37,8 +36,7 @@ export const register = async (signUp: Registration) => {
 		let response = await fetch(url + '/user/register', {
 			method: 'POST',
 			headers: {
-				Host: url,
-				'contnent-type': 'application/json',
+				'content-type': 'application/json',
 			},
 			body: JSON.stringify(signUp),
 		});

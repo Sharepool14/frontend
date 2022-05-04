@@ -11,7 +11,7 @@ declare interface Authentication {
 declare interface Registration extends Authentication {
 	firstName: string;
 	lastName: string;
-	phoneNumber: string;
+	phone: string;
 	address: {
 		street: string;
 		city: string;
