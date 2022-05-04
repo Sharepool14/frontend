@@ -11,7 +11,7 @@
 		password: '',
 		firstName: '',
 		lastName: '',
-		phoneNumber: '',
+		phone: '',
 		address: {
 			street: '',
 			city: '',
@@ -53,7 +53,7 @@
 		placeholder="Enter phone number"
 		type="phone"
 		required={true}
-		bind:value={signUp.phoneNumber}
+		bind:value={signUp.phone}
 	/>
 	<InputField
 		placeholder="Enter city"
