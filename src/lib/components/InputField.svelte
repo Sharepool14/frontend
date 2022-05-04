@@ -10,6 +10,9 @@
 	const setType = (node) => {
 		if (['text', 'email', 'password'].includes(type)) {
 			node.type = type;
+		} else if (type === 'phone') {
+			node.type = type;
+			node.pattern = '[0-9+-]{8,20}';
 		} else {
 			node.type = 'text';
 		}

@@ -3,6 +3,7 @@
 	import Input from '$lib/widgets/Input.svelte';
 	import Password from '$lib/components/auth/PasswordMatcher.svelte';
 	import InputField from '../InputField.svelte';
+	import { register } from '../../../typescript/data/auth.store';
 	let signUp: Registration;
 
 	signUp = {
@@ -10,20 +11,16 @@
 		password: '',
 		firstName: '',
 		lastName: '',
-		city: '',
-		zipCode: '',
-		address: '',
+		phoneNumber: '',
+		address: {
+			street: '',
+			city: '',
+			zipCode: '',
+		},
 	};
 
 	const handleSubmit = () => {
-		alert(`
-mail: ${signUp.username},
-password: ${signUp.password},
-first name: ${signUp.firstName},
-last name: ${signUp.lastName},
-city: ${signUp.city},
-zip code: ${signUp.zipCode},
-address: ${signUp.address}`);
+		register(signUp);
 	};
 </script>
 
@@ -52,18 +49,29 @@ address: ${signUp.address}`);
 			bind:value={signUp.lastName}
 		/>
 	</div>
-	<InputField placeholder="Enter city" type="text" required={true} bind:value={signUp.city} />
+	<InputField
+		placeholder="Enter phone number"
+		type="phone"
+		required={true}
+		bind:value={signUp.phoneNumber}
+	/>
+	<InputField
+		placeholder="Enter city"
+		type="text"
+		required={true}
+		bind:value={signUp.address.city}
+	/>
 	<InputField
 		placeholder="Enter Zip Code"
 		type="text"
 		required={true}
-		bind:value={signUp.zipCode}
+		bind:value={signUp.address.zipCode}
 	/>
 	<InputField
 		placeholder="Enter address"
 		type="text"
 		required={true}
-		bind:value={signUp.address}
+		bind:value={signUp.address.street}
 		last={true}
 	/>
 </Form>
