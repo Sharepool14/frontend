@@ -8,15 +8,21 @@
 </script>
 
 <script lang="ts">
+	import { page } from '$app/stores';
 	import BorrowPost from '$lib/components/BorrowPost.svelte';
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
-	import Card from '$lib/widgets/Card.svelte';
+	import { onMount } from 'svelte';
+	let title: string;
 	let cards = new Array<string>(50);
+
+	onMount(() => {
+		title = $page.stuff.title;
+	});
 </script>
 
 <Animate>
 	<header class="mb-x2">
-		<h1>Pools</h1>
+		<h1>{title}</h1>
 		<p>some stuff</p>
 	</header>
 	<section class="posts minl-auto mb-x2">

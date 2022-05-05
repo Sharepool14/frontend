@@ -8,10 +8,16 @@
 </script>
 
 <script lang="ts">
+	import { page } from '$app/stores';
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
+	import { onMount } from 'svelte';
+	let title: string;
+	onMount(() => {
+		title = $page.stuff.title;
+	});
 </script>
 
 <Animate>
-	<h1>About</h1>
+	<h1>{title}</h1>
 	<p>some stuff</p>
 </Animate>

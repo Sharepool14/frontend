@@ -9,7 +9,6 @@
 <div
 	out:fly={{ duration: annimationSpeed, x: x, y: y }}
 	in:fly={{ delay: annimationSpeed, duration: annimationSpeed, x: -x }}
-	on:introend={() => transitionCleanup()}
 >
 	<slot />
 </div>

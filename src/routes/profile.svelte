@@ -1,8 +1,7 @@
 <script lang="ts" context="module">
 	export async function load({ stuff }) {
-		stuff.title = 'Home';
-		stuff.description =
-			'The landing page of Sharepool, a website for borrowing and lending household items within trusted communities';
+		stuff.title = 'Your Profile';
+		stuff.description = 'user profile';
 		return {
 			stuff,
 		};

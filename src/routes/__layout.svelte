@@ -7,8 +7,15 @@
 	import { page } from '$app/stores';
 	import '../scss/app.scss';
 	import ParticlesBackground from '$lib/components/ParticlesBackground.svelte';
-	import Profile from '$lib/components/auth/Profile.svelte';
+	import ProfileLink from '$lib/components/auth/ProfileLink.svelte';
+	import { transitionCleanup } from '../typescript/ts/global';
+	import { onMount } from 'svelte';
 	let auth = false;
+	let transitionCleaner: NodeJS.Timer;
+
+	onMount(() => {
+		transitionCleaner = setInterval(transitionCleanup, 10000);
+	});
 </script>
 
 <svelte:head>
@@ -16,17 +23,23 @@
 	<meta name="description" content={$page.stuff.description}>
 	<title>{$page.stuff.title}</title>
 </svelte:head>
+
+<svelte:body />
+
 <ParticlesBackground />
+
 <header>
 	<Navbar>
 		<Navlink href="/" navTitle="Home" />
 		<Navlink href="/pools" navTitle="Pools" />
+		<Navlink href="/communities" navTitle="Communities" />
 		<Navlink href="/about" navTitle="About" />
-		<Navlink href="/contact" navTitle="Contact" />
+		{#if auth}
+			<ProfileLink href="/profile" />
+		{/if}
 	</Navbar>
-	{#if auth}
-		<Profile userName="hello" />
-	{:else}
+
+	{#if !auth}
 		<div class="mr-x1 ml-x2 mt-auto mb-auto">
 			<Modal modalButtonTitle="Log in" important={false}>
 				<Login />
