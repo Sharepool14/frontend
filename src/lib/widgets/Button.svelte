@@ -17,7 +17,7 @@
 	</span>
 </button>
 
-<style lang="postcss">
+<style lang="scss">
 	button {
 		--border-radius: 0.5rem;
 		--background-gradient: linear-gradient(60deg, var(--primary), var(--secondary));

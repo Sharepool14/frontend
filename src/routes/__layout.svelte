@@ -1,3 +1,7 @@
+<script lang="ts" context="module">
+	import '../scss/app.scss';
+</script>
+
 <script lang="ts">
 	import Login from '$lib/components/auth/Login.svelte';
 	import Navlink from '$lib/components/navigation/Navlink.svelte';
@@ -5,7 +9,6 @@
 	import Modal from '$lib/widgets/Modal.svelte';
 	import Navbar from '$lib/widgets/Navbar.svelte';
 	import { page } from '$app/stores';
-	import '../scss/app.scss';
 	import ParticlesBackground from '$lib/components/anim/ParticlesBackground.svelte';
 	import ProfileLink from '$lib/components/navigation/ProfileLink.svelte';
 	import { transitionCleanup } from '../typescript/ts/global';

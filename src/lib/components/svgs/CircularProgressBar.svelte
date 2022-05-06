@@ -40,8 +40,8 @@
 	<svg class="circular__progress" viewBox="0 0 100 100" preserveAspectRatio="none">
 		<defs>
 			<linearGradient id="GradientColor">
-				<stop offset="0%" stop-color="#d93df5" />
-				<stop offset="100%" stop-color="#3df5e9" />
+				<stop id="GradientColorA" offset="0%" />
+				<stop id="GradientColorB" offset="100%" />
 			</linearGradient>
 		</defs>
 		<circle cx="50" cy="50" r="40" stroke-linecap="round" stroke-dashoffset={$progress} />
@@ -61,13 +61,23 @@
 	</div>
 </div>
 
-<style lang="postcss">
+<style lang="scss">
 	.circular {
 		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		defs {
+			#GradientColor {
+				&A {
+					stop-color: var(--primary);
+				}
+				&B {
+					stop-color: var(--secondary);
+				}
+			}
+		}
 
 		width: 80%;
 		&__progress {

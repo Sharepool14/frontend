@@ -28,7 +28,7 @@
 	<a {href} bind:this={thisAnchor}>{navTitle}</a>
 </li>
 
-<style lang="postcss">
+<style lang="scss">
 	li {
 		a {
 			position: relative;
@@ -37,7 +37,7 @@
 			&::after {
 				position: absolute;
 				content: '';
-				background-color: rgb(255, 0, 204);
+				background-color: var(--primary);
 				top: 95%;
 				bottom: -10%;
 				left: 0;
@@ -52,7 +52,7 @@
 				transform: scaleX(0.6);
 			}
 		}
-		:global(a[current-route]) {
+		:is(a[current-route]) {
 			&::after,
 			&:hover::after {
 				transform: scaleX(1);

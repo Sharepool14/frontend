@@ -37,7 +37,7 @@
 	</section>
 </Animate>
 
-<style lang="postcss">
+<style lang="scss">
 	.posts {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

@@ -30,7 +30,7 @@
 	</a>
 </div>
 
-<style lang="postcss">
+<style lang="scss">
 	.profile {
 		display: flex;
 		align-items: center;
@@ -52,7 +52,6 @@
 		&__img {
 			width: 3rem;
 			height: 3rem;
-			aspect-ratio: 1/1;
 		}
 
 		&__anchor {
@@ -65,11 +64,11 @@
 
 			transition: 200ms border ease-in-out;
 			&:hover {
-				border-color: rgb(255, 0, 204);
+				border-color: var(--primary);
 			}
 
-			:global(&[current-route]) {
-				border-color: rgb(255, 0, 204);
+			&:is(a[current-route]) {
+				border-color: var(--primary);
 			}
 		}
 	}

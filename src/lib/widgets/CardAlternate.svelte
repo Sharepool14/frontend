@@ -6,7 +6,7 @@
 	<slot />
 </div>
 
-<style lang="postcss">
+<style lang="scss">
 	div {
 		overflow: visible;
 		position: relative;

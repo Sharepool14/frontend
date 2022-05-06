@@ -14,7 +14,6 @@
 	viewBox="0 0 1107.758 783.621"
 	enable-background="new 0 0 1107.758 783.621"
 	xml:space="preserve"
-	preserveAspectRatio="true"
 >
 	<path
 		class="logo__secondary"
@@ -135,7 +134,7 @@
 	/>
 </svg>
 
-<style lang="postcss">
+<style lang="scss">
 	.logo {
 		&__primary {
 			fill: var(--primary);

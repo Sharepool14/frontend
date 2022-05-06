@@ -17,7 +17,7 @@
 	<span class="mt-x1"><Button type="submit" styling="ml-auto mr-auto">Confirm</Button></span>
 </form>
 
-<style lang="postcss">
+<style lang="scss">
 	form {
 		display: flex;
 		flex-direction: column;

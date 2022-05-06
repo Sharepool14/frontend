@@ -18,7 +18,7 @@
 	<input use:setType bind:value {required} bind:this={inputRef} />
 </label>
 
-<style lang="postcss">
+<style lang="scss">
 	label {
 		display: flex;
 		flex-direction: column;

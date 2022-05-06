@@ -19,7 +19,7 @@
 	</div>
 </Card>
 
-<style lang="postcss">
+<style lang="scss">
 	div {
 		padding: 1.75rem;
 		display: flex;

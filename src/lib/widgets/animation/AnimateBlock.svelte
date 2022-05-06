@@ -13,7 +13,7 @@
 	<slot />
 </div>
 
-<style>
+<style lang="scss">
 	div {
 		width: 100vw;
 		display: flex;

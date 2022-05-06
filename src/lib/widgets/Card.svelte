@@ -6,7 +6,7 @@
 	<slot />
 </div>
 
-<style lang="postcss">
+<style lang="scss">
 	div {
 		--opacity: 0.2;
 		--primary-o: hsl(291 90% 60% / var(--opacity));

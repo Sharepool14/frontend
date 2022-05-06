@@ -30,7 +30,7 @@
 	bind:this={inputRef}
 />
 
-<style lang="postcss">
+<style lang="scss">
 	input {
 		display: block;
 		width: auto;

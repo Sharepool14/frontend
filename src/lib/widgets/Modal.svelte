@@ -65,7 +65,7 @@
 	</Card>
 </dialog>
 
-<style lang="postcss">
+<style lang="scss">
 	.modal {
 		overflow: visible;
 		background-color: transparent;
