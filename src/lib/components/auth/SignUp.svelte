@@ -2,46 +2,83 @@
 	import Form from '$lib/widgets/Form.svelte';
 	import Input from '$lib/widgets/Input.svelte';
 	import Password from '$lib/components/auth/PasswordMatcher.svelte';
-	let signUp: Registration;
+	import InputField from '../InputField.svelte';
+	import { register } from '../../../typescript/data/auth.store';
+	let signUp: User;
 
 	signUp = {
-		email: '',
+		username: '',
 		password: '',
-		firstName: '',
-		lastName: '',
-		city: '',
-		zipCode: '',
-		address: ''
+		userData: {
+			firstName: '',
+			lastName: '',
+			phone: '',
+			city: '',
+			zipCode: '',
+			street: '',
+		},
 	};
 
 	const handleSubmit = () => {
-		alert(`
-mail: ${signUp.email},
-password: ${signUp.password},
-first name: ${signUp.firstName},
-last name: ${signUp.lastName},
-city: ${signUp.city},
-zip code: ${signUp.zipCode},
-address: ${signUp.address}`);
+		register(signUp);
 	};
 </script>
 
 <Form title="Sign up" on:submitForm={handleSubmit}>
-	<Input type="email" bind:value={signUp.email}>Email</Input>
+	<InputField
+		placeholder="Enter email"
+		type="email"
+		required={true}
+		bind:value={signUp.username}
+		first={true}
+	/>
 	<div>
-	<Password bind:value={signUp.password} />
+		<Password bind:value={signUp.password} />
 	</div>
 	<div>
-		<Input type="text" bind:value={signUp.firstName}>First name</Input>
-		<Input type="text" bind:value={signUp.lastName}>Last name</Input>
+		<InputField
+			placeholder="Enter first name"
+			type="text"
+			required={true}
+			bind:value={signUp.userData.firstName}
+		/>
+		<InputField
+			placeholder="Enter last name"
+			type="text"
+			required={true}
+			bind:value={signUp.userData.lastName}
+		/>
 	</div>
-	<Input type="text" bind:value={signUp.city}>City</Input>
-	<Input type="text" bind:value={signUp.zipCode}>Zip code</Input>
-	<Input type="text" bind:value={signUp.address}>Address</Input>
+	<InputField
+		placeholder="Enter phone number"
+		type="phone"
+		required={true}
+		bind:value={signUp.userData.phone}
+	/>
+	<InputField
+		placeholder="Enter city"
+		type="text"
+		required={true}
+		bind:value={signUp.userData.city}
+	/>
+	<InputField
+		placeholder="Enter Zip Code"
+		type="text"
+		required={true}
+		bind:value={signUp.userData.zipCode}
+	/>
+	<InputField
+		placeholder="Enter address"
+		type="text"
+		required={true}
+		bind:value={signUp.userData.street}
+		last={true}
+	/>
 </Form>
 
 <style lang="postcss">
 	div {
-		columns: 2 150px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	}
 </style>

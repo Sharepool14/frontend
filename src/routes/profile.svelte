@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	export async function load({ stuff }) {
-		stuff.title = 'About';
-		stuff.description = 'An in-depth explenation of the intent and function of Sharepool';
+		stuff.title = 'Your Profile';
+		stuff.description = 'user profile';
 		return {
 			stuff,
 		};

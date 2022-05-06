@@ -1,51 +1,26 @@
 <script lang="ts">
-	export let attatch: 'global' | 'local' = 'local';
+	export let hoverable = false;
 </script>
 
-<div class={attatch}>
+<div class:hoverable>
 	<slot />
 </div>
 
 <style lang="postcss">
 	div {
+		--opacity: 0.2;
+		--primary-o: hsl(291 90% 60% / var(--opacity));
+		--secondary-o: hsl(176 90% 60% / var(--opacity));
 		overflow: visible;
-		position: relative;
 		background-color: var(--stage);
-		border-radius: 20% 0 20% 0;
-		&::before,
-		&::after {
-			z-index: -1;
-			overflow: visible;
-			position: absolute;
-			content: '';
-			inset: -0.125rem;
-			background-image: linear-gradient(
-				60deg,
-				var(--primary) 15%,
-				var(--stage) 30%,
-				var(--stage) 70%,
-				var(--secondary) 85%
-			);
-			border-radius: 20% 0 20% 0;
-		}
-
-		&::after {
-			filter: blur(25px);
-			opacity: 0.15;
-		}
+		border-radius: 2rem;
+		box-shadow: 0.25em 0.25em 0.75em var(--primary-o);
+		transition: box-shadow 250ms ease-in-out, transform 250ms ease-in-out;
 	}
-
-	.local {
-		&::before,
-		&::after {
-			background-attachment: local;
-		}
-	}
-	.global {
-		&::before,
-		&::after {
-			background-attachment: fixed;
-			background-image: linear-gradient(60deg, var(--primary), var(--secondary));
+	.hoverable {
+		&:hover {
+			box-shadow: 0.25em 0.25em 0.75em var(--secondary-o);
+			transform: scale(1.05);
 		}
 	}
 </style>

@@ -1,41 +1,30 @@
 <script lang="ts">
 	import Input from '$lib/widgets/Input.svelte';
 	import Form from '$lib/widgets/Form.svelte';
-	import {hasAccess} from '../../../typescript/data/auth.store'
+	import { hasAccess, authenticate } from '../../../typescript/data/auth.store';
+	import Button from '$lib/widgets/Button.svelte';
+	import InputField from '../InputField.svelte';
 	let login: Authentication;
-	login = { password: '', email: '' } 
-	/*
-	const url = "http://localhost:8080";
-
-	const handleLogin = async () => {
-		try{
-			let response = await fetch(url + '/login', {
-				method: 'POST',
-				headers: {
-					Host: url,
-					'contnent-type': 'application/json'
-				},
-				body: JSON.stringify(login)
-			})
-			let data = await response.json();
-			console.log(data);
-		}catch (err) {
-			console.error(err);
-		}
-		
-	}
-	*/
-	const handleLogin = () => {
-		alert(`Mail entered: ${login.email}; Password entered: ${login.password}`)
-	}
+	login = { password: '', username: '' };
 </script>
 
 {#if !$hasAccess}
-<Form title="Log in" on:submitForm={handleLogin}>
-	<Input type="email" bind:value={login.email}>Email</Input>
-	<Input type="password" bind:value={login.password}>Password</Input>
-</Form>
+	<Form title="Log in" on:submitForm={() => authenticate(login)}>
+		<InputField
+			placeholder="Enter email"
+			type="email"
+			required={true}
+			bind:value={login.username}
+			first={true}
+		/>
+		<InputField
+			placeholder="Enter password"
+			type="password"
+			required={true}
+			bind:value={login.password}
+			last={true}
+		/>
+	</Form>
 {:else}
 	<h1>You are logged in</h1>
 {/if}
-

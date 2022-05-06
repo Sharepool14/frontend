@@ -4,14 +4,19 @@ declare interface HTMLDialogElement extends HTMLElement {
 }
 
 declare interface Authentication {
-	email: string;
+	username: string;
 	password: string;
 }
 
-declare interface Registration extends Authentication {
+declare interface UserData {
 	firstName: string;
 	lastName: string;
+	phone: string;
 	city: string;
 	zipCode: string;
-	address: string;
+	street: string;
+}
+
+declare interface User extends Authentication {
+	userData: UserData;
 }

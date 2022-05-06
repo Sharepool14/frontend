@@ -1,0 +1,61 @@
+@use 'utilities.scss';
+
+:root {
+	--text-color: hsl(0 100% 100%);
+	--stage: hsl(291 70% 10%);
+	--primary: hsl(291 90% 60%);
+	--secondary: hsl(176 90% 60%);
+}
+
+* {
+	max-width: 100%;
+	max-width: 100%;
+	z-index: unset;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--stage);
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+h1,
+h2,
+h3,
+h4,
+a,
+p,
+button,
+label {
+	color: var(--text-color);
+	font-family: sans-serif;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+button {
+	background: unset;
+	border-width: 0;
+	cursor: pointer;
+	width: fit-content;
+}
+
+button[disabled] {
+	cursor: not-allowed;
+}

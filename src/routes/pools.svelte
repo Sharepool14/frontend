@@ -1,12 +1,18 @@
-<script lang="ts">
-	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
-	const pageTitle = 'Pools';
+<script lang="ts" context="module">
+	export async function load({ stuff }) {
+		stuff.title = 'Pools';
+		stuff.description =
+			'Groups of like-minded people who share common household items between them';
+		return {
+			stuff,
+		};
+	}
 </script>
 
-<svelte:head>
-	<title>{pageTitle}</title>
-</svelte:head>
+<script lang="ts">
+	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
+</script>
 
 <Animate>
-	<h1>{pageTitle}</h1>
+	<p>some stuff</p>
 </Animate>

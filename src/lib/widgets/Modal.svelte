@@ -5,7 +5,9 @@
 	import { faXmark } from '@fortawesome/free-solid-svg-icons';
 	let modal: HTMLDialogElement; //re-declared in global.d.ts
 	export let modalButtonTitle: string;
+	export let important = true;
 	import { fade } from 'svelte/transition';
+	import Button from './Button.svelte';
 
 	const closeIcon = faXmark;
 
@@ -24,11 +26,24 @@
 			console.error(err);
 		}
 	};
+
+	const startClose = () => {
+		modal.setAttribute('closing', '');
+	};
+
+	onMount(() => {
+		modal.addEventListener('animationend', () => {
+			if (modal.hasAttribute('closing')) {
+				modal.removeAttribute('closing');
+				closeModal();
+			}
+		});
+	});
 </script>
 
-<button on:click={openModal}>
+<Button on:buttonClicked={openModal} {important}>
 	{modalButtonTitle}
-</button>
+</Button>
 
 <dialog
 	class="modal m-auto"
@@ -36,12 +51,12 @@
 	on:click={(ev) => {
 		//@ts-ignore
 		if (ev.target.tagName === 'DIALOG') {
-			closeModal();
+			startClose();
 		}
 	}}
 >
 	<Card>
-		<button class="modal__close m-x0_5" on:click={closeModal}>
+		<button class="modal__close m-x0_5" on:click={startClose}>
 			<Fa icon={closeIcon} scale={1.35} fw />
 		</button>
 		<main class="modal__content">
@@ -68,6 +83,58 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+		}
+	}
+	:global {
+		.modal {
+			&[open] {
+				animation: glideIn 500ms, blurIn 500ms;
+				&::backdrop {
+					animation: blurIn 500ms forwards;
+				}
+			}
+			&[closing] {
+				animation: glideOut 500ms, blurOut 500ms;
+				&::backdrop {
+					animation: blurOut 500ms forwards;
+				}
+			}
+		}
+	}
+
+	@keyframes glideIn {
+		0% {
+			transform: translateY(-30%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+
+	@keyframes glideOut {
+		0% {
+			transform: translateY(0%);
+		}
+		100% {
+			transform: translateY(30%);
+		}
+	}
+
+	@keyframes blurIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes blurOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
 		}
 	}
 </style>
