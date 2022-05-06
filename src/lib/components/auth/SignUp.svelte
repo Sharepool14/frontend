@@ -4,18 +4,18 @@
 	import Password from '$lib/components/auth/PasswordMatcher.svelte';
 	import InputField from '../InputField.svelte';
 	import { register } from '../../../typescript/data/auth.store';
-	let signUp: Registration;
+	let signUp: User;
 
 	signUp = {
 		username: '',
 		password: '',
-		firstName: '',
-		lastName: '',
-		phone: '',
-		address: {
-			street: '',
+		userData: {
+			firstName: '',
+			lastName: '',
+			phone: '',
 			city: '',
 			zipCode: '',
+			street: '',
 		},
 	};
 
@@ -40,38 +40,38 @@
 			placeholder="Enter first name"
 			type="text"
 			required={true}
-			bind:value={signUp.firstName}
+			bind:value={signUp.userData.firstName}
 		/>
 		<InputField
 			placeholder="Enter last name"
 			type="text"
 			required={true}
-			bind:value={signUp.lastName}
+			bind:value={signUp.userData.lastName}
 		/>
 	</div>
 	<InputField
 		placeholder="Enter phone number"
 		type="phone"
 		required={true}
-		bind:value={signUp.phone}
+		bind:value={signUp.userData.phone}
 	/>
 	<InputField
 		placeholder="Enter city"
 		type="text"
 		required={true}
-		bind:value={signUp.address.city}
+		bind:value={signUp.userData.city}
 	/>
 	<InputField
 		placeholder="Enter Zip Code"
 		type="text"
 		required={true}
-		bind:value={signUp.address.zipCode}
+		bind:value={signUp.userData.zipCode}
 	/>
 	<InputField
 		placeholder="Enter address"
 		type="text"
 		required={true}
-		bind:value={signUp.address.street}
+		bind:value={signUp.userData.street}
 		last={true}
 	/>
 </Form>

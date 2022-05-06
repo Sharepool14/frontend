@@ -5,7 +5,7 @@
 		millisToMinutes,
 		millisToSeconds,
 		time,
-	} from '../../typescript/data/clock.store';
+	} from '../../../typescript/data/clock.store';
 	import { tweened } from 'svelte/motion';
 	import { writable } from 'svelte/store';
 	import { linear } from 'svelte/easing';
@@ -15,7 +15,7 @@
 	const returnDate = new Date('2022-04-27T02:00:00');
 	const returnDateTime = returnDate.getTime();
 
-	const progress = tweened<number>(0, { duration: 1000 });
+	const progress = tweened(0, { duration: 1000 });
 	const returnedIn = writable({
 		days: 0,
 		hours: 0,

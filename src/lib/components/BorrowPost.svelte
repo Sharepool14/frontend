@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Card from '$lib/widgets/Card.svelte';
-	import CircularProgressBar from './CircularProgressBar.svelte';
+	import CircularProgressBar from './svgs/CircularProgressBar.svelte';
 
 	export let title: string;
 	export let description: string;

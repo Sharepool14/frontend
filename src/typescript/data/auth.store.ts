@@ -31,7 +31,7 @@ export const authenticate = async (login: Authentication) => {
 	}
 };
 
-export const register = async (signUp: Registration) => {
+export const register = async (signUp: User) => {
 	try {
 		let response = await fetch(url + '/user/register', {
 			method: 'POST',
