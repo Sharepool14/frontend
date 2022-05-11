@@ -1,48 +1,48 @@
 <script lang="ts">
-	import Input from '$lib/widgets/Input.svelte';
-	import Form from '$lib/widgets/Form.svelte';
 	import Button from '$lib/widgets/Button.svelte';
-	import InputField from '$lib/components/InputField.svelte';
+	import { reFetchInvites } from '../../typescript/data/invites.store';
 	import Cookies from 'js-cookie';
-	import Modal from '$lib/widgets/Modal.svelte';
+	import { reFetchPools } from '../../typescript/data/communities.store';
 
-	export let communityID: number;
+	export let inviteID: number;
+	export let inviter: string;
 	export let communityName: string;
-
-	let value: string;
-	let modal;
-
-	const handleSubmit = async (id: number) => {
-		console.log(`api/communities/${id}/members/invite`);
-		const res = await fetch(`api/communities/${id}/members/invite`, {
+	const acceptInvite = async () => {
+		const res = await fetch(`api/user/communities/invites/${inviteID}`, {
 			method: 'POST',
-			headers: {
-				access_token: Cookies.get('access_token'),
-			},
-			body: JSON.stringify({
-				communityID: id,
-				invitee: value,
-			}),
+			headers: { access_token: Cookies.get('access_token') },
 		});
 		if (res.ok) {
-			value = '';
-			modal.startClose();
+			reFetchInvites();
+			reFetchPools();
+		}
+	};
+
+	const rejectInvite = async () => {
+		const res = await fetch(`api/user/communities/invites/${inviteID}`, {
+			method: 'DELETE',
+			headers: { access_token: Cookies.get('access_token') },
+		});
+		if (res.ok) {
+			reFetchInvites();
+			reFetchPools();
 		}
 	};
 </script>
 
-<Modal modalButtonTitle="Invite a new member" bind:this={modal}>
-	<Form
-		title={`Invite new a member to ${communityName}`}
-		on:submitForm={() => handleSubmit(communityID)}
-	>
-		<InputField
-			placeholder="Enter another users email"
-			type="email"
-			required={true}
-			bind:value
-			first
-			last
-		/>
-	</Form>
-</Modal>
+<li>
+	<span>
+		{inviter} invited you to {communityName}
+		<Button important on:buttonClicked={() => acceptInvite()}>Accept</Button>
+		<Button important={false} on:buttonClicked={() => rejectInvite()}>Reject</Button>
+	</span>
+</li>
+
+<style lang="scss">
+	li {
+		span {
+			display: inline-flex;
+			gap: 1rem;
+		}
+	}
+</style>

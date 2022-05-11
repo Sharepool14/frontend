@@ -10,7 +10,12 @@
 </script>
 
 {#if !$hasAccess}
-	<Form title="Log in" on:submitForm={() => authenticate(login)}>
+	<Form
+		title="Log in"
+		on:submitForm={() => {
+			authenticate(login);
+		}}
+	>
 		<InputField
 			placeholder="Enter email"
 			type="email"

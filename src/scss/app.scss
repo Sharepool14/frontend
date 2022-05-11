@@ -16,10 +16,12 @@
 	--primaryHSL: #{colors.$primaryHSL};
 	--secondaryHSl: #{colors.$secondaryHSL};
 
+	/*
 	@media (prefers-color-scheme: light) {
 		--text-color: #{colors.$stage};
 		--stage: white;
 	}
+	*/
 }
 
 * {

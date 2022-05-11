@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export async function load({ stuff, fetch }) {
+	export async function load({ stuff, session }) {
 		stuff.title = 'Your Profile';
 		stuff.description = 'user profile';
 
@@ -18,6 +18,8 @@
 	import { user } from '../typescript/data/user.store';
 	import { communities } from '../typescript/data/communities.store';
 	import NewPool from '$lib/components/NewPool.svelte';
+	import { invites, reFetchInvites } from '../typescript/data/invites.store';
+	import Invite from '$lib/components/Invite.svelte';
 </script>
 
 <Animate>
@@ -83,11 +85,20 @@
 		</Card>
 		<Card --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
 			<h2>Invites</h2>
-			<p>
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nobis quaerat natus nemo
-				obcaecati, quae voluptatem provident earum incidunt quod animi sint, ea facere. Quisquam
-				autem ipsa nesciunt repudiandae assumenda!
-			</p>
+			{#if $invites.length > 0}
+				<ul>
+					{#each $invites as invite}
+						<Invite
+							inviteID={invite.id}
+							inviter={invite.inviter}
+							communityName={invite.community}
+						/>
+					{/each}
+				</ul>
+			{:else}
+				<p>You have no invites at the moment</p>
+			{/if}
+			<Button on:buttonClicked={() => reFetchInvites()}>Reload invites</Button>
 		</Card>
 	</main>
 	<Button on:buttonClicked={() => logOut()}>Log out</Button>

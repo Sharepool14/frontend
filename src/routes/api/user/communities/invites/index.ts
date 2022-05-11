@@ -8,7 +8,7 @@ export const get: RequestHandler = async ({ request }) => {
 		};
 	}
 
-	const res = await fetch(apiURL + '/user/items', {
+	const res = await fetch(apiURL + '/user/invite', {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',

@@ -15,7 +15,7 @@
 	import CardColored from '$lib/widgets/CardColored.svelte';
 	import { communities } from '../typescript/data/communities.store';
 	import { hasAccess } from '../typescript/data/auth.store';
-	import InviteForm from '$lib/components/Invite.svelte';
+	import NewInvite from '$lib/components/NewInvite.svelte';
 </script>
 
 <Animate>
@@ -24,7 +24,7 @@
 			{#each $communities as community, key (key)}
 				<CardColored --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
 					<h2>{community.name}</h2>
-					<InviteForm communityName={community.name} communityID={community.id} />
+					<NewInvite communityName={community.name} communityID={community.id} />
 				</CardColored>
 			{/each}
 		</main>
