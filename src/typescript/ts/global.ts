@@ -6,3 +6,5 @@ const transitionCleanup = () => {
 		if (style.attributes.length === 0) style.remove();
 	});
 };
+
+export const apiURL = 'http://localhost:8080';

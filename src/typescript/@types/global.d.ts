@@ -8,15 +8,15 @@ declare interface Authentication {
 	password: string;
 }
 
-declare interface UserData {
-	firstName: string;
-	lastName: string;
+declare interface UserInformation {
+	firstname: string;
+	lastname: string;
 	phone: string;
 	city: string;
-	zipCode: string;
+	zipcode: string;
 	street: string;
 }
 
 declare interface User extends Authentication {
-	userData: UserData;
+	userInformation: UserInformation;
 }

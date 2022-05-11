@@ -1,12 +1,11 @@
-import { writable } from 'svelte/store';
+import { readable } from 'svelte/store';
 
-export const time = writable<number>();
-
-const checkTime = () => {
-	time.set(Date.now());
-};
-
-const clock = setInterval(() => checkTime(), 1000);
+export const time = readable<number>(0, function start(set) {
+	const interval = setInterval(() => set(Date.now()), 1000);
+	return function stop() {
+		clearInterval(interval);
+	};
+});
 
 export const millisToSeconds = (ms: number) => {
 	return Math.floor((ms % (1000 * 60)) / 1000);

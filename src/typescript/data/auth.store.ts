@@ -1,47 +1,52 @@
-import { writable } from 'svelte/store';
+import { readable, writable, get } from 'svelte/store';
+import { apiURL } from '../ts/global';
+import Cookies from 'js-cookie';
+import { page } from '$app/stores';
 
-export let hasAccess = writable(false);
-export let currentUser = writable<number>(null);
-
-const url = 'http://localhost:8080';
+export const hasAccess = readable(false, function start(set) {
+	setInterval(() => set(get(auth)), 100);
+});
+const auth = writable(false);
 
 interface Tokens {
-	id: number;
 	access_token: string;
 	refresh_token: string;
 }
 
 export const authenticate = async (login: Authentication) => {
 	try {
-		let response = await fetch(url + '/login', {
+		const res = await fetch('api/user/login', {
 			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-			},
 			body: JSON.stringify(login),
 		});
-		let data = (await response.json()) as Tokens;
-		document.cookie = `access_token=${data.access_token};`;
-		document.cookie = `refresh_token=${data.refresh_token};`;
-		currentUser.set(data.id);
-		console.log(document.cookie);
-		alert(`${document.cookie}`);
+		const data = await res.json();
+		if (res.ok) {
+			auth.set(true);
+		}
+		Cookies.set('access_token', data.access_token);
+		Cookies.set('refresh_token', data.refresh_token);
+		console.log('Access token: ' + Cookies.get('access_token'));
+		console.log('Refresh token: ' + Cookies.get('refresh_token'));
 	} catch (err) {
 		console.error(err);
 	}
 };
 
 export const register = async (signUp: User) => {
+	console.log(JSON.stringify(signUp));
 	try {
-		let response = await fetch(url + '/user/register', {
+		const response = await fetch('api/user/register', {
 			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-			},
 			body: JSON.stringify(signUp),
 		});
 		alert(response.status);
 	} catch (err) {
 		console.error(err);
 	}
+};
+
+export const logOut = () => {
+	Cookies.remove('access_token');
+	Cookies.remove('refresh_token');
+	auth.set(false);
 };

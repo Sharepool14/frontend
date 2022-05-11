@@ -36,6 +36,7 @@
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.5.0",
 		"purgecss-from-svelte": "^2.0.2",
+		"sass": "^1.51.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.10.1",
@@ -46,8 +47,9 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",
+		"@types/js-cookie": "^3.0.2",
+		"js-cookie": "^3.0.1",
 		"onchange": "^7.1.0",
-		"sass": "^1.51.0",
 		"svelte-fa": "^2.4.0"
 	}
 }
