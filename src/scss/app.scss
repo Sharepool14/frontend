@@ -1,10 +1,25 @@
-@use 'utilities.scss';
+@use './utilities';
+@use 'sass:color';
+@use './colors';
 
 :root {
-	--text-color: hsl(0 100% 100%);
-	--stage: hsl(291 70% 10%);
-	--primary: hsl(312 100% 50%);
-	--secondary: hsl(176 90% 60%);
+	--text-color: white;
+	--stage: #{colors.$stage};
+
+	--primary: #{colors.$primary};
+	--secondary: #{colors.$secondary};
+
+	--primary-dark: #{colors.$primary-dark};
+	--secondary-dark: #{colors.$secondary-dark};
+
+	--stageHSL: #{colors.$stageHSL};
+	--primaryHSL: #{colors.$primaryHSL};
+	--secondaryHSl: #{colors.$secondaryHSL};
+
+	@media (prefers-color-scheme: light) {
+		--text-color: #{colors.$stage};
+		--stage: white;
+	}
 }
 
 * {
@@ -38,15 +53,11 @@ h3,
 h4,
 a,
 p,
+li,
 button,
 label {
 	color: var(--text-color);
 	font-family: sans-serif;
-}
-
-ol,
-ul {
-	list-style: none;
 }
 
 button {

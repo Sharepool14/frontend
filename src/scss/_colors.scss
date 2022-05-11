@@ -1,0 +1,12 @@
+@use 'sass:color';
+
+$primary: hsl(312deg, 100%, 50%);
+$secondary: hsl(176deg, 100%, 45%);
+$stage: hsl(291deg, 70%, 10%);
+
+$primary-dark: darken($primary, 30%);
+$secondary-dark: darken($secondary, 25%);
+
+$primaryHSL: color.hue($primary) color.saturation($primary) color.lightness($primary);
+$secondaryHSL: color.hue($secondary) color.saturation($secondary) color.lightness($secondary);
+$stageHSL: color.hue($stage) color.saturation($stage) color.lightness($stage);
