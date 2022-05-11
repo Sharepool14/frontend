@@ -28,8 +28,7 @@
 	};
 
 	$: {
-		let borrowTime = getProgressRatioOffset($time);
-		$progress = borrowTime <= 253 ? borrowTime : 254;
+		$progress = getProgressRatioOffset($time);
 		$returnedIn.seconds = millisToSeconds(returnDateTime - $time);
 		$returnedIn.minutes = millisToMinutes(returnDateTime - $time);
 		$returnedIn.hours = millisToHours(returnDateTime - $time);

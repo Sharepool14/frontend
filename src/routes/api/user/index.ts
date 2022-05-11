@@ -9,7 +9,7 @@ export const get: RequestHandler = async ({ request }) => {
 			status: 403,
 		};
 	}
-	const res = await fetch(apiURL + '/user', {
+	const res = await fetch(apiURL + '/user/info', {
 		method: 'GET',
 		headers: {
 			Authorization: 'Bearer ' + request.headers.get('access_token'),
@@ -21,9 +21,8 @@ export const get: RequestHandler = async ({ request }) => {
 			status: res.status,
 		};
 	}
-	console.log(res.status);
-	const data = await res.json();
 
+	const data = await res.json();
 	return {
 		body: {
 			data,

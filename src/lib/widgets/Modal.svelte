@@ -7,14 +7,13 @@
 	let modal: HTMLDialogElement; //re-declared in global.d.ts
 	export let modalButtonTitle: string;
 	export let important = true;
-	import { fade } from 'svelte/transition';
 	import Button from './Button.svelte';
 
 	library.add(faXmark);
 	//@ts-ignore
 	const closeIcon = icon({ iconName: 'xmark' });
 
-	const openModal = () => {
+	export const openModal = () => {
 		try {
 			modal.showModal();
 		} catch (err) {
@@ -30,7 +29,7 @@
 		}
 	};
 
-	const startClose = () => {
+	export const startClose = () => {
 		modal.setAttribute('closing', '');
 	};
 

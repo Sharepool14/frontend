@@ -11,30 +11,35 @@
 <script lang="ts">
 	import BorrowPost from '$lib/components/BorrowPost.svelte';
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
+	import CardColored from '$lib/widgets/CardColored.svelte';
+	import { hasAccess } from '../typescript/data/auth.store';
 
 	let cards = new Array<string>(50);
 </script>
 
 <Animate>
-	<header class="mb-x2">
-		<p>some stuff</p>
-	</header>
-	<section class="posts minl-auto mb-x2">
-		{#each cards as card}
-			<BorrowPost
-				title="An item"
-				description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
+	{#if $hasAccess}
+		<section class="posts minl-auto mb-x2">
+			{#each cards as card}
+				<BorrowPost
+					title="An item"
+					description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
 						quia obcaecati alias."
-				borrowed={true}
-			/>
-			<BorrowPost
-				title="An item"
-				description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
+					borrowed={true}
+				/>
+				<BorrowPost
+					title="An item"
+					description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
 						quia obcaecati alias."
-				borrowed={false}
-			/>
-		{/each}
-	</section>
+					borrowed={false}
+				/>
+			{/each}
+		</section>
+	{:else}
+		<CardColored --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
+			<h2>You have to be logged in to see this page</h2>
+		</CardColored>
+	{/if}
 </Animate>
 
 <style lang="scss">

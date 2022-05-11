@@ -3,7 +3,7 @@
 	import Input from '$lib/widgets/Input.svelte';
 	import Password from '$lib/components/auth/PasswordMatcher.svelte';
 	import InputField from '../InputField.svelte';
-	import { register } from '../../../typescript/data/auth.store';
+	import { authenticate, register } from '../../../typescript/data/auth.store';
 	let signUp: User;
 
 	signUp = {
@@ -19,8 +19,9 @@
 		},
 	};
 
-	const handleSubmit = () => {
-		register(signUp);
+	const handleSubmit = async () => {
+		await register(signUp);
+		await authenticate({ username: signUp.username, password: signUp.password });
 	};
 </script>
 

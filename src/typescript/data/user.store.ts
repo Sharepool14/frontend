@@ -12,9 +12,8 @@ export const user = readable<object>([], function start(set) {
 				},
 			});
 			const data = await res.json();
-			console.log(data);
 			if (res.ok) {
-				set(data);
+				set(data.data);
 			} else {
 				set({});
 			}
