@@ -40,7 +40,7 @@
 <style lang="scss">
 	.posts {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
 		gap: 2rem;
 
 		width: 80vw;
@@ -48,8 +48,5 @@
 		@media screen and (min-width: 1440px) {
 			width: 70vw;
 		}
-	}
-
-	.post {
 	}
 </style>

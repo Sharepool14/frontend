@@ -2,7 +2,7 @@
 	export let placeholder: string;
 	export let required = false;
 	export let type: string;
-	export let value: string;
+	export let value: string = undefined;
 	export let inputRef: HTMLInputElement = undefined;
 	export let first = false;
 	export let last = false;

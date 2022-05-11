@@ -14,11 +14,11 @@
 	import { transitionCleanup } from '../typescript/ts/global';
 	import { onMount } from 'svelte';
 	import Logo from '$lib/components/svgs/Logo.svelte';
-	let auth = false;
+	import { hasAccess } from '../typescript/data/auth.store';
 	let transitionCleaner: NodeJS.Timer;
 
 	onMount(() => {
-		transitionCleaner = setInterval(transitionCleanup, 10000);
+		transitionCleaner = setInterval(transitionCleanup, 20000);
 	});
 </script>
 
@@ -41,8 +41,8 @@
 		<Navlink href="/" navTitle="Home" />
 		<Navlink href="/feed" navTitle="Feed" />
 		<Navlink href="/pools" navTitle="Pools" />
-		<Navlink href="/about" navTitle="About" />
-		{#if auth}
+		<Navlink href="/guide" navTitle="Guide" />
+		{#if $hasAccess}
 			<ProfileLink href="/profile" />
 		{:else}
 			<div class="mr-x1 ml-x2 mt-auto mb-auto">
@@ -60,10 +60,6 @@
 <main class="minl-x2">
 	<slot />
 </main>
-
-<footer class="pinl-x2">
-	<button on:click={() => (auth = !auth)}>toggle auth</button>
-</footer>
 
 <style lang="scss">
 	header {

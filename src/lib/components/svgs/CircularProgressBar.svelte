@@ -10,9 +10,9 @@
 	import { writable } from 'svelte/store';
 	import { linear } from 'svelte/easing';
 
-	const borrowDate = new Date('2022-04-26T02:00:00');
+	const borrowDate = new Date('2022-05-09T11:00:00');
 	const borrowDateTime = borrowDate.getTime();
-	const returnDate = new Date('2022-04-27T02:00:00');
+	const returnDate = new Date('2022-05-15T11:05:00');
 	const returnDateTime = returnDate.getTime();
 
 	const progress = tweened(0, { duration: 1000 });
@@ -28,7 +28,8 @@
 	};
 
 	$: {
-		$progress = getProgressRatioOffset($time);
+		let borrowTime = getProgressRatioOffset($time);
+		$progress = borrowTime <= 253 ? borrowTime : 254;
 		$returnedIn.seconds = millisToSeconds(returnDateTime - $time);
 		$returnedIn.minutes = millisToMinutes(returnDateTime - $time);
 		$returnedIn.hours = millisToHours(returnDateTime - $time);

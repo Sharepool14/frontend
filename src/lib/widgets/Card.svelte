@@ -2,7 +2,7 @@
 	export let hoverable = false;
 </script>
 
-<div class:hoverable>
+<div class:hoverable class="p-x0_5">
 	<slot />
 </div>
 

@@ -3,13 +3,16 @@
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 	import { faXmark } from '@fortawesome/free-solid-svg-icons';
+	import { library, icon } from '@fortawesome/fontawesome-svg-core';
 	let modal: HTMLDialogElement; //re-declared in global.d.ts
 	export let modalButtonTitle: string;
 	export let important = true;
 	import { fade } from 'svelte/transition';
 	import Button from './Button.svelte';
 
-	const closeIcon = faXmark;
+	library.add(faXmark);
+	//@ts-ignore
+	const closeIcon = icon({ iconName: 'xmark' });
 
 	const openModal = () => {
 		try {

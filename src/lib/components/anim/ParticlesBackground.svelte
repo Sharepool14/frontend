@@ -44,11 +44,10 @@
 				this.x += this.speed.speedX;
 				this.y += this.speed.speedY;
 				this.draw();
-			} catch (err) {
-				console.error(err);
-			}
+			} catch (err) {}
 		};
 	}
+
 	let particleColor = 'hsl(291 70% 20%)';
 	let canvas: HTMLCanvasElement;
 	let context: CanvasRenderingContext2D;
@@ -82,52 +81,56 @@
 	};
 
 	const connectParticles = () => {
-		let opacity = 1;
-		for (let a = 0; a < particles.length; a++) {
-			for (let b = a; b < particles.length; b++) {
-				let distance =
-					Math.pow(particles[a].x - particles[b].x, 2) +
-					Math.pow(particles[a].y - particles[b].y, 2);
-				if (distance < Math.pow(canvas.width / 12, 2)) {
-					opacity = 1 - distance / 20000;
-					context.strokeStyle = `hsl(291 70% 20% / ${opacity})`;
-					context.lineWidth = 1;
-					context.beginPath();
-					context.moveTo(particles[a].x, particles[a].y);
-					context.lineTo(particles[b].x, particles[b].y);
-					context.stroke();
+		try {
+			let opacity = 1;
+			for (let a = 0; a < particles.length; a++) {
+				for (let b = a; b < particles.length; b++) {
+					let distance =
+						Math.pow(particles[a].x - particles[b].x, 2) +
+						Math.pow(particles[a].y - particles[b].y, 2);
+					if (distance < Math.pow(canvas.width / 12, 2)) {
+						opacity = 1 - distance / 20000;
+						context.strokeStyle = `hsl(291 70% 20% / ${opacity})`;
+						context.lineWidth = 1;
+						context.beginPath();
+						context.moveTo(particles[a].x, particles[a].y);
+						context.lineTo(particles[b].x, particles[b].y);
+						context.stroke();
+					}
 				}
 			}
-		}
+		} catch (err) {}
 	};
 
 	onMount(() => {
 		context = canvas.getContext('2d');
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
-		window.addEventListener('resize', () => {
-			let previousWidth = canvas.width;
-			let previousHeigt = canvas.height;
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
-			let widthRatio = canvas.width / previousWidth;
-			let heightRatio = canvas.height / previousHeigt;
-
-			particles.forEach((particle) => {
-				particle.x *= widthRatio;
-				particle.y *= heightRatio;
-				particle.update();
-			});
-			connectParticles();
-		});
 		initParticles(particleColor);
 		animateParticles(particleColor);
 	});
 </script>
 
+<svelte:window
+	on:resize={() => {
+		let previousWidth = canvas.width;
+		let previousHeigt = canvas.height;
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		let widthRatio = canvas.width / previousWidth;
+		let heightRatio = canvas.height / previousHeigt;
+
+		particles.forEach((particle) => {
+			particle.x *= widthRatio;
+			particle.y *= heightRatio;
+			particle.update();
+		});
+		connectParticles();
+	}}
+/>
 <canvas bind:this={canvas} />
 
-<style lang="postcss">
+<style lang="scss">
 	canvas {
 		z-index: -1000;
 		position: fixed;

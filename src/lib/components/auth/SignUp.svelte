@@ -9,12 +9,12 @@
 	signUp = {
 		username: '',
 		password: '',
-		userData: {
-			firstName: '',
-			lastName: '',
+		userInformation: {
+			firstname: '',
+			lastname: '',
 			phone: '',
 			city: '',
-			zipCode: '',
+			zipcode: '',
 			street: '',
 		},
 	};
@@ -40,38 +40,38 @@
 			placeholder="Enter first name"
 			type="text"
 			required={true}
-			bind:value={signUp.userData.firstName}
+			bind:value={signUp.userInformation.firstname}
 		/>
 		<InputField
 			placeholder="Enter last name"
 			type="text"
 			required={true}
-			bind:value={signUp.userData.lastName}
+			bind:value={signUp.userInformation.lastname}
 		/>
 	</div>
 	<InputField
 		placeholder="Enter phone number"
 		type="phone"
 		required={true}
-		bind:value={signUp.userData.phone}
+		bind:value={signUp.userInformation.phone}
 	/>
 	<InputField
 		placeholder="Enter city"
 		type="text"
 		required={true}
-		bind:value={signUp.userData.city}
+		bind:value={signUp.userInformation.city}
 	/>
 	<InputField
 		placeholder="Enter Zip Code"
 		type="text"
 		required={true}
-		bind:value={signUp.userData.zipCode}
+		bind:value={signUp.userInformation.zipcode}
 	/>
 	<InputField
 		placeholder="Enter address"
 		type="text"
 		required={true}
-		bind:value={signUp.userData.street}
+		bind:value={signUp.userInformation.street}
 		last={true}
 	/>
 </Form>

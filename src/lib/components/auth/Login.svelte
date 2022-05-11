@@ -4,6 +4,7 @@
 	import { hasAccess, authenticate } from '../../../typescript/data/auth.store';
 	import Button from '$lib/widgets/Button.svelte';
 	import InputField from '../InputField.svelte';
+	import { afterUpdate } from 'svelte';
 	let login: Authentication;
 	login = { password: '', username: '' };
 </script>
