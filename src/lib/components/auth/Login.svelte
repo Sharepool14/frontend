@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Input from '$lib/widgets/Input.svelte';
 	import Form from '$lib/widgets/Form.svelte';
-	import { hasAccess, authenticate } from '../../../typescript/data/auth.store';
+	import { hasAccess, authenticate } from '$lib/typescript/data/auth.store';
 	import Button from '$lib/widgets/Button.svelte';
 	import InputField from '../InputField.svelte';
 	import { afterUpdate } from 'svelte';

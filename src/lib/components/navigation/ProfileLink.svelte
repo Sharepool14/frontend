@@ -63,12 +63,16 @@
 			border: 3px solid transparent;
 
 			transition: 200ms border ease-in-out;
-			&:hover {
+			&:hover,
+			&:focus {
 				border-color: var(--primary);
 			}
 
 			&:is(a[current-route]) {
 				border-color: var(--primary);
+				&:focus {
+					border-width: 5px;
+				}
 			}
 		}
 	}

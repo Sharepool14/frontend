@@ -2,86 +2,111 @@
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
-
+	let ripple: HTMLSpanElement;
+	let button: HTMLButtonElement;
 	const notify = () => {
 		dispatch('buttonClicked');
+	};
+
+	const rippleStartFocus = () => {
+		ripple.style.left = '50%';
+		ripple.style.top = '50%';
+	};
+	const rippleStart = (e: MouseEvent) => {
+		ripple.style.left = `${e.clientX - button.offsetLeft}px`;
+		ripple.style.top = `${e.clientY - button.offsetTop}px`;
 	};
 	export let type = 'button';
 	export let important = true;
 	export let styling: string = undefined;
+	$: cssVariables = Object.entries($$props)
+		.filter(([key]) => key.startsWith('--'))
+		.reduce((css, [key, value]) => `${css}${key}: ${value};`, '');
 </script>
 
-<button {type} class:important on:click={notify} class={styling}>
-	<span>
-		<slot />
-	</span>
+<button
+	{type}
+	class:important
+	on:click={() => notify()}
+	on:focus={() => rippleStartFocus()}
+	on:mouseover={(e) => rippleStart(e)}
+	class={styling}
+	style={cssVariables}
+	bind:this={button}
+>
+	<span class="text p-x0_5"><slot /></span>
+	<span class="ripple" bind:this={ripple} />
 </button>
 
 <style lang="scss">
 	button {
-		--border-radius: 0.5rem;
-		--background-gradient: linear-gradient(60deg, var(--primary), var(--secondary));
-		z-index: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		position: relative;
-		overflow: visible;
+		--color: var(--button-color, var(--primary));
+		--border-radius: 0.5em;
+		color: white;
+		font-weight: 500;
+		overflow: hidden;
+		display: flex;
+		align-content: center;
+		justify-content: center;
 		border-radius: var(--border-radius);
-		width: fit-content;
-		height: fit-content;
+		border: 3px solid transparent;
 		font-size: inherit;
+		transition: border-radius 300ms ease-in-out, border-color 300ms ease,
+			background-color 300ms ease, color 300ms ease, font-weight 300ms ease-in-out;
 
-		transition: transform 150ms ease-in-out;
+		&:focus,
 		&:hover {
-			transform: scale(1.05);
-		}
-		span {
-			font-size: inherit;
-			text-transform: capitalise;
-			padding: 0.4em;
-			&:hover {
-				background-image: var(--background-gradient);
-				background-clip: text;
-				color: transparent;
+			.ripple {
+				transform: scale(7);
+				opacity: 1;
 			}
+		}
+
+		.ripple {
+			z-index: 9000;
+			background-color: var(--color);
+			filter: brightness(0.5);
+			position: absolute;
+			border-radius: 50%;
+			width: 2em;
+			height: 2em;
+			opacity: 0;
+			transition: transform 500ms ease-in-out, opacity 500ms ease-in-out,
+				background-color 500ms ease-in-out;
+			transform: scale(0);
+		}
+
+		.text {
+			position: relative;
+			z-index: 10000;
 		}
 
 		&.important {
-			font-weight: 600;
-			&:hover {
-				transform: translateY(0.15rem);
+			color: white;
+			background-color: var(--color);
+			border-color: var(--color);
+			&:hover,
+			&:focus {
+				border-radius: calc(var(--border-radius) * 3);
 			}
-			span {
-				color: var(--stage);
-				border-radius: var(--border-radius);
-				background-image: var(--background-gradient);
-				background-repeat: no-repeat;
-				&:hover {
-					color: transparent;
-					.important::before {
-						background-image: none;
-					}
-				}
-			}
+		}
 
-			&::after,
-			&::before {
-				position: absolute;
-				z-index: -1;
-				content: '';
+		@keyframes shifting-border {
+			0% {
+				border-color: var(--primary);
 			}
-			&::before {
-				inset: -0.05em -0.05em;
-				background-image: var(--background-gradient);
-
-				border-radius: calc(var(--border-radius) * 1.05);
+			100% {
+				border-color: var(--secondary);
 			}
-			&::after {
-				inset: 0.05em 0.05em;
-				background-color: var(--stage);
+		}
 
-				border-radius: calc(var(--border-radius));
+		@keyframes shifting-color {
+			0% {
+				color: var(--primary);
+			}
+			100% {
+				color: var(--secondary);
 			}
 		}
 	}

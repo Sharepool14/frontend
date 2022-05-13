@@ -3,7 +3,7 @@
 	import Input from '$lib/widgets/Input.svelte';
 	import Password from '$lib/components/auth/PasswordMatcher.svelte';
 	import InputField from '../InputField.svelte';
-	import { authenticate, register } from '../../../typescript/data/auth.store';
+	import { authenticate, register } from '$lib/typescript/data/auth.store';
 	let signUp: User;
 
 	signUp = {

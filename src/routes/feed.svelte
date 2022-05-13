@@ -12,7 +12,7 @@
 	import BorrowPost from '$lib/components/BorrowPost.svelte';
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
 	import CardColored from '$lib/widgets/CardColored.svelte';
-	import { hasAccess } from '../typescript/data/auth.store';
+	import { hasAccess } from '$lib/typescript/data/auth.store';
 
 	let cards = new Array<string>(50);
 </script>

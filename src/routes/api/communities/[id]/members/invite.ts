@@ -1,4 +1,4 @@
-import { apiURL } from '../../../../../typescript/ts/global';
+import { apiURL } from '$lib/typescript/ts/global';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const post: RequestHandler = async ({ request, params }) => {

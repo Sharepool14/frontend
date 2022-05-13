@@ -31,7 +31,7 @@
 	};
 </script>
 
-<Modal modalButtonTitle="Invite a new member" bind:this={modal}>
+<Modal modalButtonTitle="Invite a new member" bind:this={modal} secondaryColor>
 	<Form
 		title={`Invite new a member to ${communityName}`}
 		on:submitForm={() => handleSubmit(communityID)}

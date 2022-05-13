@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Button from '$lib/widgets/Button.svelte';
-	import { reFetchInvites } from '../../typescript/data/invites.store';
+	import { reFetchInvites } from '$lib/typescript/data/invites.store';
 	import Cookies from 'js-cookie';
-	import { reFetchPools } from '../../typescript/data/communities.store';
+	import { reFetchPools } from '$lib/typescript/data/communities.store';
 
 	export let inviteID: number;
 	export let inviter: string;
@@ -33,7 +33,9 @@
 <li>
 	<span>
 		{inviter} invited you to {communityName}
-		<Button important on:buttonClicked={() => acceptInvite()}>Accept</Button>
+		<Button important on:buttonClicked={() => acceptInvite()} --button-color="var(--secondary)"
+			>Accept</Button
+		>
 		<Button important={false} on:buttonClicked={() => rejectInvite()}>Reject</Button>
 	</span>
 </li>

@@ -14,7 +14,7 @@
 <h1 class="mb-x1">{title}</h1>
 <form on:submit|preventDefault={notify} style="width: {width}">
 	<slot />
-	<span class="mt-x1"><Button type="submit" styling="ml-auto mr-auto">Confirm</Button></span>
+	<Button type="submit" styling="mt-x1 ml-auto mr-auto">Confirm</Button>
 </form>
 
 <style lang="scss">

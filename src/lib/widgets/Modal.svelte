@@ -7,6 +7,7 @@
 	let modal: HTMLDialogElement; //re-declared in global.d.ts
 	export let modalButtonTitle: string;
 	export let important = true;
+	export let secondaryColor = false;
 	import Button from './Button.svelte';
 
 	library.add(faXmark);
@@ -43,9 +44,15 @@
 	});
 </script>
 
-<Button on:buttonClicked={openModal} {important}>
-	{modalButtonTitle}
-</Button>
+{#if secondaryColor}
+	<Button on:buttonClicked={openModal} {important} --button-color={'var(--secondary)'}>
+		{modalButtonTitle}
+	</Button>
+{:else}
+	<Button on:buttonClicked={openModal} {important}>
+		{modalButtonTitle}
+	</Button>
+{/if}
 
 <dialog
 	class="modal m-auto"

@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import '../scss/app.scss';
+	import '$lib/scss/app.scss';
 </script>
 
 <script lang="ts">
@@ -11,10 +11,10 @@
 	import { page } from '$app/stores';
 	import ParticlesBackground from '$lib/components/anim/ParticlesBackground.svelte';
 	import ProfileLink from '$lib/components/navigation/ProfileLink.svelte';
-	import { transitionCleanup } from '../typescript/ts/global';
+	import { transitionCleanup } from '$lib/typescript/ts/global';
 	import { onMount } from 'svelte';
 	import Logo from '$lib/components/svgs/Logo.svelte';
-	import { hasAccess } from '../typescript/data/auth.store';
+	import { hasAccess } from '$lib/typescript/data/auth.store';
 	let transitionCleaner: NodeJS.Timer;
 
 	onMount(() => {

@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { apiURL } from '../../../../../typescript/ts/global';
+import { apiURL } from '$lib/typescript/ts/global';
 
 export const get: RequestHandler = async ({ request }) => {
 	if (request.headers.get('access_token') === undefined) {

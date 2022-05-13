@@ -51,11 +51,18 @@
 			&:hover::after {
 				transform: scaleX(0.6);
 			}
+
+			&:focus::after {
+				transform: scaleX(0.6) translateY(0.2em);
+			}
 		}
 		:is(a[current-route]) {
 			&::after,
 			&:hover::after {
 				transform: scaleX(1);
+			}
+			&:focus::after {
+				transform: translateY(0.2em);
 			}
 		}
 	}

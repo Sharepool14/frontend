@@ -13,12 +13,12 @@
 	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
 	import Button from '$lib/widgets/Button.svelte';
 	import Card from '$lib/widgets/CardColored.svelte';
-	import { items } from '../typescript/data/items.store';
-	import { logOut } from '../typescript/data/auth.store';
-	import { user } from '../typescript/data/user.store';
-	import { communities } from '../typescript/data/communities.store';
+	import { items } from '$lib/typescript/data/items.store';
+	import { logOut } from '$lib/typescript/data/auth.store';
+	import { user } from '$lib/typescript/data/user.store';
+	import { communities } from '$lib/typescript/data/communities.store';
 	import NewPool from '$lib/components/NewPool.svelte';
-	import { invites, reFetchInvites } from '../typescript/data/invites.store';
+	import { invites, reFetchInvites } from '$lib/typescript/data/invites.store';
 	import Invite from '$lib/components/Invite.svelte';
 </script>
 
@@ -98,7 +98,9 @@
 			{:else}
 				<p>You have no invites at the moment</p>
 			{/if}
-			<Button on:buttonClicked={() => reFetchInvites()}>Reload invites</Button>
+			<Button on:buttonClicked={() => reFetchInvites()} --button-color={'var(--secondary)'}
+				>Reload invites</Button
+			>
 		</Card>
 	</main>
 	<Button on:buttonClicked={() => logOut()}>Log out</Button>

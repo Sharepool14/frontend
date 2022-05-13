@@ -5,7 +5,7 @@
 		millisToMinutes,
 		millisToSeconds,
 		time,
-	} from '../../../typescript/data/clock.store';
+	} from '$lib/typescript/data/clock.store';
 	import { tweened } from 'svelte/motion';
 	import { writable } from 'svelte/store';
 	import { linear } from 'svelte/easing';

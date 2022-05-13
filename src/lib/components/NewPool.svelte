@@ -2,7 +2,7 @@
 	import Form from '$lib/widgets/Form.svelte';
 	import InputField from '$lib/components/InputField.svelte';
 	import Cookies from 'js-cookie';
-	import { reFetchPools } from '../../typescript/data/communities.store';
+	import { reFetchPools } from '$lib/typescript/data/communities.store';
 	import Modal from '$lib/widgets/Modal.svelte';
 
 	let value: string;
@@ -26,7 +26,7 @@
 	};
 </script>
 
-<Modal modalButtonTitle="New pool" bind:this={modal}>
+<Modal modalButtonTitle="New pool" bind:this={modal} secondaryColor>
 	<Form title="Create a new pool" on:submitForm={() => handleSubmit()}>
 		<InputField
 			placeholder="Enter the name of your new pool"
