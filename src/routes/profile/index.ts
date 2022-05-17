@@ -19,3 +19,12 @@ export const get: RequestHandler = async ({ request }) => {
 		body: { info, communities, items, invites },
 	};
 };
+
+export const post: RequestHandler = async ({ request }) => {
+	const req = await request.formData();
+	const newPoolName = await req.get('newPoolName');
+	console.log(newPoolName);
+	return {
+		status: 200,
+	};
+};

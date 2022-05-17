@@ -6,6 +6,7 @@
 	export let inputRef: HTMLInputElement = undefined;
 	export let first = false;
 	export let last = false;
+	export let name: string = undefined;
 
 	const setType = (node) => {
 		if (['text', 'email', 'password'].includes(type)) {
@@ -24,6 +25,7 @@
 	class:first
 	class:last
 	use:setType
+	{name}
 	{placeholder}
 	{required}
 	bind:value

@@ -9,7 +9,7 @@
 {#if !$hasAccess}
 	<Form
 		title="Log in"
-		on:submitForm={() => {
+		on:submit={() => {
 			authenticate(login);
 		}}
 	>

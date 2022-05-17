@@ -1,5 +1,14 @@
 const apiURL = 'http://localhost:8080';
 
+const formPostHandler = (e: SubmitEvent) => {
+	const req = new XMLHttpRequest();
+	//@ts-ignore
+	req.open(e.target.method, e.target.action, true);
+	//@ts-ignore
+	req.send(new FormData(e.target));
+	e.preventDefault();
+};
+
 const dataFetcher = async (uri: string, auth: string) => {
 	const res = await fetch(apiURL + uri, {
 		method: 'GET',
@@ -9,8 +18,7 @@ const dataFetcher = async (uri: string, auth: string) => {
 		},
 	});
 	const data = await res.json();
-	console.log(data);
 	return data;
 };
 
-export { apiURL, dataFetcher };
+export { apiURL, dataFetcher, formPostHandler };

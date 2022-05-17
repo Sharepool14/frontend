@@ -24,7 +24,7 @@
 	};
 </script>
 
-<Form title="Sign up" on:submitForm={handleSubmit}>
+<Form title="Sign up" on:submit={handleSubmit}>
 	<InputField
 		placeholder="Enter email"
 		type="email"

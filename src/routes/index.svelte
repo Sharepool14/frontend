@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
+	import { Block as Animate } from '$lib/modules/anim';
 </script>
 
 <Animate>

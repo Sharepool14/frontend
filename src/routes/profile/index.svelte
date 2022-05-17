@@ -13,7 +13,7 @@
 <script lang="ts">
 	import { Block as Animate } from '$lib/modules/anim';
 	import { Button } from '$lib/modules/widgets';
-	import { Card } from '$lib/modules/cards';
+	import { CardColored as Card } from '$lib/modules/cards';
 	import { logOut } from '$lib/data/auth.store';
 	import { NewPool, Invite } from '$lib/modules/other';
 	import { afterNavigate, beforeNavigate, invalidate } from '$app/navigation';
@@ -23,11 +23,13 @@
 	export let communities: any[];
 	export let items: any[];
 	export let invites: any[];
+	export let message;
 
 	$: {
 		communities.sort((a, b) => a.id - b.id);
 		items.sort((a, b) => a.id - b.id);
 		invites.sort((a, b) => a.id - b.id);
+		console.log(message);
 	}
 </script>
 
