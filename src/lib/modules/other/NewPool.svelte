@@ -9,14 +9,11 @@
 	import { formPostHandler } from '$lib/ts/api';
 
 	let value: string;
-	let modal;
+	let modal: Modal;
 
 	const handleSubmit = async () => {
 		modal.startClose();
 	};
-	onMount(() => {
-		console.log($page.url.pathname);
-	});
 </script>
 
 <Modal modalButtonTitle="New pool" bind:this={modal} secondaryColor>

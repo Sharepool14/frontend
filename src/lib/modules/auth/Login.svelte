@@ -9,8 +9,9 @@
 {#if !$hasAccess}
 	<Form
 		title="Log in"
-		on:submit={() => {
+		on:submit={(e) => {
 			authenticate(login);
+			e.preventDefault();
 		}}
 	>
 		<InputField

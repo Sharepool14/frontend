@@ -24,7 +24,13 @@
 	};
 </script>
 
-<Form title="Sign up" on:submit={handleSubmit}>
+<Form
+	title="Sign up"
+	on:submit={(e) => {
+		handleSubmit();
+		e.preventDefault();
+	}}
+>
 	<InputField
 		placeholder="Enter email"
 		type="email"
