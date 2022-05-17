@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { apiURL } from '../../../typescript/ts/global';
+import { apiURL } from '$lib/ts/api';
 
 export const post: RequestHandler = async ({ request }) => {
 	const reqBody = await request.json();

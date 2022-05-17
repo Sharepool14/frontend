@@ -1,8 +1,6 @@
-import { apiURL } from '$lib/typescript/ts/global';
-import Cookies from 'js-cookie';
+import { apiURL } from '$lib/ts/api';
 import type { RequestHandler } from '@sveltejs/kit';
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
 export const get: RequestHandler = async ({ request }) => {
 	if (request.headers.get('access_token') === undefined) {
 		return {

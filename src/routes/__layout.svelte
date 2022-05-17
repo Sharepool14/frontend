@@ -3,18 +3,16 @@
 </script>
 
 <script lang="ts">
-	import Login from '$lib/components/auth/Login.svelte';
-	import Navlink from '$lib/components/navigation/Navlink.svelte';
-	import SignUp from '$lib/components/auth/SignUp.svelte';
-	import Modal from '$lib/widgets/Modal.svelte';
-	import Navbar from '$lib/widgets/Navbar.svelte';
+	import * as Nav from '$lib/modules/navigation';
+	import * as Auth from '$lib/modules/auth';
+	import { Particles } from '$lib/modules/anim';
+	import { Modal } from '$lib/modules/cards';
 	import { page } from '$app/stores';
-	import ParticlesBackground from '$lib/components/anim/ParticlesBackground.svelte';
-	import ProfileLink from '$lib/components/navigation/ProfileLink.svelte';
-	import { transitionCleanup } from '$lib/typescript/ts/global';
+
+	import { transitionCleanup } from '$lib/ts/global';
 	import { onMount } from 'svelte';
-	import Logo from '$lib/components/svgs/Logo.svelte';
-	import { hasAccess } from '$lib/typescript/data/auth.store';
+	import { Logo } from '$lib/modules/svgs';
+	import { hasAccess } from '$lib/data/auth.store';
 	let transitionCleaner: NodeJS.Timer;
 
 	onMount(() => {
@@ -30,31 +28,31 @@
 
 <svelte:body />
 
-<ParticlesBackground />
+<Particles />
 
 <header>
 	<div class="logo mr-auto">
 		<Logo width="10rem" />
 	</div>
 
-	<Navbar>
-		<Navlink href="/" navTitle="Home" />
-		<Navlink href="/feed" navTitle="Feed" />
-		<Navlink href="/pools" navTitle="Pools" />
-		<Navlink href="/guide" navTitle="Guide" />
+	<Nav.Bar>
+		<Nav.Link href="/" navTitle="Home" />
+		<Nav.Link href="/feed" navTitle="Feed" />
+		<Nav.Link href="/pools" navTitle="Pools" />
+		<Nav.Link href="/guide" navTitle="Guide" />
 		{#if $hasAccess}
-			<ProfileLink href="/profile" />
+			<Nav.Profile href="/profile" />
 		{:else}
 			<div class="mr-x1 ml-x2 mt-auto mb-auto">
 				<Modal modalButtonTitle="Log in" important={false}>
-					<Login />
+					<Auth.Login />
 				</Modal>
 				<Modal modalButtonTitle="Sign up">
-					<SignUp />
+					<Auth.Register />
 				</Modal>
 			</div>
 		{/if}
-	</Navbar>
+	</Nav.Bar>
 </header>
 
 <main class="minl-x2">

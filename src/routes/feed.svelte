@@ -9,10 +9,10 @@
 </script>
 
 <script lang="ts">
-	import BorrowPost from '$lib/components/BorrowPost.svelte';
-	import Animate from '$lib/widgets/animation/AnimateBlock.svelte';
-	import CardColored from '$lib/widgets/CardColored.svelte';
-	import { hasAccess } from '$lib/typescript/data/auth.store';
+	import { BorrowPost } from '$lib/modules/other';
+	import { Block as Animate } from '$lib/modules/anim';
+	import { CardColored } from '$lib/modules/cards';
+	import { hasAccess } from '$lib/data/auth.store';
 
 	let cards = new Array<string>(50);
 </script>

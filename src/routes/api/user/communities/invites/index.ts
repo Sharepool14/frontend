@@ -1,8 +1,11 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { apiURL } from '$lib/typescript/ts/global';
+import { apiURL } from '$lib/ts/api';
+import cookie from 'cookie';
 
 export const get: RequestHandler = async ({ request }) => {
-	if (request.headers.get('access_token') === undefined) {
+	const auth = cookie.parse(request.headers.get('cookie') || '').accessToken;
+
+	if (auth === undefined) {
 		return {
 			status: 403,
 		};
@@ -12,7 +15,7 @@ export const get: RequestHandler = async ({ request }) => {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
-			Authorization: 'Bearer ' + request.headers.get('access_token'),
+			Authorization: 'Bearer ' + auth,
 		},
 	});
 	const data = await res.json();

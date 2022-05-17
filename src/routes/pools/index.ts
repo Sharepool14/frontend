@@ -1,28 +1,17 @@
+import { dataFetcher } from '$lib/ts/api';
 import type { RequestHandler } from '@sveltejs/kit';
-import { apiURL } from '$lib/ts/api';
 import cookie from 'cookie';
 
 export const get: RequestHandler = async ({ request }) => {
 	const auth = cookie.parse(request.headers.get('cookie') || '').accessToken;
-	console.log(auth);
 	if (auth === undefined) {
 		return {
 			status: 403,
 		};
 	}
-
-	const res = await fetch(apiURL + '/user/items', {
-		method: 'GET',
-		headers: {
-			'content-type': 'application/json',
-			Authorization: 'Bearer ' + auth,
-		},
-	});
-	const data = await res.json();
+	const communities = await dataFetcher('/user/community', auth);
 
 	return {
-		body: {
-			data,
-		},
+		body: { communities },
 	};
 };
