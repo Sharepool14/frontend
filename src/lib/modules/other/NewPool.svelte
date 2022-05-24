@@ -1,11 +1,6 @@
 <script lang="ts">
-	import { Form } from '$lib/modules/widgets';
-	import { InputField } from './';
-	import Cookies from 'js-cookie';
-	import { reFetchPools } from '$lib/data/communities.store';
+	import { Form, Input } from '$lib/modules/widgets';
 	import { Modal } from '$lib/modules/Cards';
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import { formPostHandler } from '$lib/ts/api';
 
 	let value: string;
@@ -23,9 +18,10 @@
 		on:submit={(e) => {
 			formPostHandler(e);
 			modal.startClose();
+			e.preventDefault();
 		}}
 	>
-		<InputField
+		<Input
 			placeholder="Enter the name of your new pool"
 			name="newPoolName"
 			type="text"

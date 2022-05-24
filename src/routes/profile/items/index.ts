@@ -3,10 +3,12 @@ import type { RequestHandler } from '@sveltejs/kit';
 import cookie from 'cookie';
 
 export const get: RequestHandler = async ({ request }) => {
-	const { status, body } = await getHandler('/user/community', request);
+	const { status, body } = await getHandler('/user/items', request);
 
 	return {
 		status,
-		body: { communities: body },
+		body: {
+			items: body,
+		},
 	};
 };

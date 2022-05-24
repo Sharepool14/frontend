@@ -25,7 +25,7 @@
 </script>
 
 <li>
-	<a {href} bind:this={thisAnchor}>{navTitle}</a>
+	<a {href} bind:this={thisAnchor} sveltekit:prefetch>{navTitle}</a>
 </li>
 
 <style lang="scss">

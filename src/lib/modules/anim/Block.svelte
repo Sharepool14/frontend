@@ -2,11 +2,11 @@
 	import { fly } from 'svelte/transition';
 	export let annimationSpeed = 500;
 	export let x = 50;
-	export let y = 0;
+	export let y = 50;
 </script>
 
 <div
-	out:fly={{ duration: annimationSpeed, x: x, y: y }}
+	out:fly={{ duration: annimationSpeed, x: x }}
 	in:fly={{ delay: annimationSpeed, duration: annimationSpeed, x: -x }}
 >
 	<slot />

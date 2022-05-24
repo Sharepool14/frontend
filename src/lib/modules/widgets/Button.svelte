@@ -27,7 +27,7 @@
 <button
 	{type}
 	class:important
-	on:click={() => notify()}
+	on:click={notify}
 	on:focus={() => rippleStartFocus()}
 	on:mouseover={(e) => rippleStart(e)}
 	class={styling}

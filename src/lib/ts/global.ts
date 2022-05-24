@@ -1,11 +1,19 @@
-export { transitionCleanup, Particle };
+export { Particle, formDataToObject };
 export type { Speed2D };
 
-const transitionCleanup = () => {
-	const styles = document.querySelectorAll('head style');
-	styles.forEach((style) => {
-		if (style.attributes.length === 0) style.remove();
+const formDataToObject = <Type>(formData: FormData) => {
+	const object = {};
+	formData.forEach((value, key) => {
+		if (!Reflect.has(object, key)) {
+			object[key] = value;
+			return;
+		}
+		if (!Array.isArray(object[key])) {
+			object[key] = [object[key]];
+		}
+		object[key].push(value);
 	});
+	return <Type>object;
 };
 
 interface Speed2D {

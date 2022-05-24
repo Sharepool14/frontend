@@ -14,18 +14,16 @@ interface Tokens {
 	refresh_token: string;
 }
 
-export const authenticate = async (login: Authentication) => {
-	const res = await fetch('api/user/login', {
-		method: 'POST',
-		body: JSON.stringify(login),
-	});
-	if (res.ok) {
+export const authenticate = async () => {
+	if (Cookies.get('accessToken')) {
 		auth.set(true);
+	} else {
+		auth.set(false);
 	}
 };
 
 export const register = async (signUp: User) => {
-	await fetch('api/user/register', {
+	await fetch('auth/register', {
 		method: 'POST',
 		body: JSON.stringify(signUp),
 	});

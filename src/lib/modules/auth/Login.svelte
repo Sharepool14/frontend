@@ -1,33 +1,22 @@
 <script lang="ts">
-	import { Form } from '$lib/modules/widgets';
+	import { Form, Input } from '$lib/modules/widgets';
 	import { hasAccess, authenticate } from '$lib/data/auth.store';
-	import { InputField } from '$lib/modules/other';
-	let login: Authentication;
-	login = { password: '', username: '' };
+	import { formPostHandler } from '$lib/ts/api';
 </script>
 
 {#if !$hasAccess}
 	<Form
 		title="Log in"
-		on:submit={(e) => {
-			authenticate(login);
+		method="post"
+		action="auth/login"
+		on:submit={async (e) => {
+			await formPostHandler(e);
+			authenticate();
 			e.preventDefault();
 		}}
 	>
-		<InputField
-			placeholder="Enter email"
-			type="email"
-			required={true}
-			bind:value={login.username}
-			first={true}
-		/>
-		<InputField
-			placeholder="Enter password"
-			type="password"
-			required={true}
-			bind:value={login.password}
-			last={true}
-		/>
+		<Input placeholder="Enter email" type="email" name="username" required first />
+		<Input placeholder="Enter password" type="password" name="password" required last />
 	</Form>
 {:else}
 	<h1>You are logged in</h1>

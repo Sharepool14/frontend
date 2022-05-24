@@ -13,11 +13,13 @@
 <script lang="ts">
 	import { Block as Animate } from '$lib/modules/anim';
 	import { Button } from '$lib/modules/widgets';
-	import { CardColored as Card } from '$lib/modules/cards';
+	import { CardColored as Card, Modal } from '$lib/modules/cards';
+	import { Form, Input } from '$lib/modules/widgets';
 	import { logOut } from '$lib/data/auth.store';
 	import { NewPool, Invite } from '$lib/modules/other';
 	import { afterNavigate, beforeNavigate, invalidate } from '$app/navigation';
 	import { afterUpdate, onMount } from 'svelte';
+	import { formPostHandler } from '$lib/ts/api';
 
 	export let info: any;
 	export let communities: any[];
@@ -25,32 +27,39 @@
 	export let invites: any[];
 	export let message;
 
+	interface ModalForm {
+		modal: Modal;
+		value: string | number | Date;
+	}
+
+	let newPool: Modal;
+	let newItem: Modal;
 	$: {
+		//console.log(communities);
 		communities.sort((a, b) => a.id - b.id);
 		items.sort((a, b) => a.id - b.id);
 		invites.sort((a, b) => a.id - b.id);
-		console.log(message);
 	}
 </script>
 
 <Animate>
-	<h1>{info.firstname}'s profile</h1>
+	<h1>{info?.firstname}'s profile</h1>
 	<main class="mblk-x1">
 		<Card --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
 			<h2>Information</h2>
 			<p>
 				<strong>First name:</strong>
-				{info.firstname}<br />
+				{info?.firstname}<br />
 				<strong>Last name:</strong>
-				{info.lastname}<br />
+				{info?.lastname}<br />
 				<strong>Phone number:</strong>
-				{info.phone}<br />
+				{info?.phone}<br />
 				<strong>City:</strong>
-				{info.city}<br />
+				{info?.city}<br />
 				<strong>Zip code:</strong>
-				{info.zipcode}<br />
+				{info?.zipcode}<br />
 				<strong>Street:</strong>
-				{info.street}
+				{info?.street}
 			</p>
 		</Card>
 
@@ -59,26 +68,47 @@
 			{#if communities.length > 0}
 				<ul class="ml-x2">
 					{#each communities as community}
-						<li>{community.name}</li>
+						<li>{community?.name}</li>
 					{/each}
 				</ul>
 			{:else}
 				<h2>You are not a member of any pools</h2>
 			{/if}
-			<NewPool />
+			<Modal modalButtonTitle="New pool" bind:this={newPool} secondaryColor>
+				<Form
+					title="Create a new pool"
+					method="post"
+					on:submit={(e) => {
+						formPostHandler(e);
+						newPool.startClose();
+						e.preventDefault();
+					}}
+				>
+					<Input
+						placeholder="Enter the name of your new pool"
+						name="poolName"
+						type="text"
+						required
+						first
+						last
+					/>
+				</Form>
+			</Modal>
 		</Card>
 
 		<Card --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
-			<h2>My Items</h2>
-			{#if items.length > 0}
-				<ul class="ml-x2">
-					{#each items as item}
-						<li>{item.name}</li>
-					{/each}
-				</ul>
-			{:else}
-				<p>You have no items listed</p>
-			{/if}
+			<a href="/profile/items">
+				<h2>My Items</h2>
+				{#if items.length > 0}
+					<ul class="ml-x2">
+						{#each items as item}
+							<li>{item.name}</li>
+						{/each}
+					</ul>
+				{:else}
+					<p>You have no items listed</p>
+				{/if}
+			</a>
 		</Card>
 		<Card --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
 			<h2>Messages</h2>

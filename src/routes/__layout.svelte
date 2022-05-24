@@ -1,28 +1,21 @@
-<script lang="ts" context="module">
-	import '$lib/scss/app.scss';
-</script>
-
 <script lang="ts">
+	import '$lib/scss/app.scss';
 	import * as Nav from '$lib/modules/navigation';
 	import * as Auth from '$lib/modules/auth';
 	import { Particles } from '$lib/modules/anim';
 	import { Modal } from '$lib/modules/cards';
 	import { page } from '$app/stores';
-
-	import { transitionCleanup } from '$lib/ts/global';
 	import { onMount } from 'svelte';
 	import { Logo } from '$lib/modules/svgs';
-	import { hasAccess } from '$lib/data/auth.store';
+	import { authenticate, hasAccess } from '$lib/data/auth.store';
 	let transitionCleaner: NodeJS.Timer;
-
 	onMount(() => {
-		transitionCleaner = setInterval(transitionCleanup, 20000);
+		authenticate();
 	});
 </script>
 
 <svelte:head>
-	<!-- prettier-ignore -->
-	<meta name="description" content={$page.stuff.description}>
+	<meta name="description" content={$page.stuff.description} />
 	<title>{$page.stuff.title}</title>
 </svelte:head>
 

@@ -1,36 +1,46 @@
 <script lang="ts">
-	export let placeholder: string;
-	export let required = false;
 	export let type: string;
-	export let value: string = undefined;
 	export let inputRef: HTMLInputElement = undefined;
 	export let first = false;
 	export let last = false;
-	export let name: string = undefined;
 
 	const setType = (node) => {
-		if (['text', 'email', 'password'].includes(type)) {
-			node.type = type;
+		if (['submit', 'reset', 'button'].includes(type)) {
+			node.type = 'text';
+			console.warn('please use a button instead');
 		} else if (type === 'phone') {
 			node.type = type;
 			node.pattern = '[0-9+-]{8,20}';
 		} else {
-			node.type = 'text';
+			node.type = type;
 		}
 	};
 </script>
 
-<input
-	class="pblk-x0_5 pinl-x1"
-	class:first
-	class:last
-	use:setType
-	{name}
-	{placeholder}
-	{required}
-	bind:value
-	bind:this={inputRef}
-/>
+{#if $$slots.label}
+	<label>
+		<slot name="label" />
+		<input
+			class={`pblk-x0_5 pinl-x1 ${$$props?.class}`}
+			class:first
+			class:last
+			use:setType
+			{...$$restProps}
+			bind:value={$$props.value}
+			bind:this={inputRef}
+		/>
+	</label>
+{:else}
+	<input
+		class={`pblk-x0_5 pinl-x1 ${$$props?.class}`}
+		class:first
+		class:last
+		use:setType
+		{...$$restProps}
+		bind:value={$$props.value}
+		bind:this={inputRef}
+	/>
+{/if}
 
 <style lang="scss">
 	input {

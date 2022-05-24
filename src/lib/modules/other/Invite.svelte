@@ -2,7 +2,6 @@
 	import { Button } from '$lib/modules/widgets';
 	import { reFetchInvites } from '$lib/data/invites.store';
 	import Cookies from 'js-cookie';
-	import { reFetchPools } from '$lib/data/communities.store';
 
 	export let inviteID: number;
 	export let inviter: string;
@@ -14,7 +13,6 @@
 		});
 		if (res.ok) {
 			reFetchInvites();
-			reFetchPools();
 		}
 	};
 
@@ -25,7 +23,6 @@
 		});
 		if (res.ok) {
 			reFetchInvites();
-			reFetchPools();
 		}
 	};
 </script>

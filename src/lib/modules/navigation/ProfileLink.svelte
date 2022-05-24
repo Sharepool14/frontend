@@ -25,7 +25,7 @@
 </script>
 
 <div class="profile" class:unread>
-	<a class="profile__anchor" {href} bind:this={thisAnchor}>
+	<a class="profile__anchor" {href} bind:this={thisAnchor} sveltekit:prefetch>
 		<img class="profile__img" src="https://picsum.photos/50/50" alt="Your Profile" />
 	</a>
 </div>

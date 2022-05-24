@@ -16,8 +16,12 @@
 	import { CardColored } from '$lib/modules/cards';
 	import { hasAccess } from '$lib/data/auth.store';
 	import { NewInvite } from '$lib/modules/other';
+	import { pools } from '$lib/data/pools.store';
 	export let communities: any[];
-	$: communities?.sort((a, b) => a.id - b.id);
+	$: {
+		communities?.sort((a, b) => a.id - b.id);
+		$pools = communities;
+	}
 </script>
 
 <Animate>
@@ -25,8 +29,7 @@
 		<main>
 			{#each communities as community, key (key)}
 				<CardColored --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
-					<h2>{community.name}</h2>
-					<NewInvite communityName={community.name} communityID={community.id} />
+					<a href={`pools/${community.id}`} sveltekit:prefetch><h2>{community.name}</h2></a>
 				</CardColored>
 			{/each}
 		</main>
