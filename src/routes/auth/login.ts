@@ -3,7 +3,7 @@ import { postHandler } from '$lib/ts/api';
 import { serialize } from 'cookie';
 import { formDataToObject } from '$lib/ts/global';
 
-export const post: RequestHandler = async ({ request }) => {
+export const post = async ({ request }) => {
 	let object: Authentication;
 	try {
 		const formData = await request.formData();
@@ -15,9 +15,6 @@ export const post: RequestHandler = async ({ request }) => {
 
 	const { status, body } = await postHandler('/login', request, { username, password });
 
-	if (status >= 400) {
-		return status;
-	}
 	const accessToken = serialize('accessToken', body.access_token, {
 		path: '/',
 		maxAge: 60 * 60 * 24 * 7, // one week
@@ -29,9 +26,10 @@ export const post: RequestHandler = async ({ request }) => {
 	});
 
 	return {
-		status: 200,
+		status: 302,
 		headers: {
 			'set-cookie': [accessToken, refreshToken],
+			location: '/',
 		},
 	};
 };

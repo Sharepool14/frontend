@@ -2,7 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 import { apiURL, isRegister, postHandler } from '$lib/ts/api';
 import { formDataToObject } from '$lib/ts/global';
 
-export const post: RequestHandler = async ({ request }) => {
+export const post = async ({ request }) => {
 	const formData = await request.formData();
 	const object = formDataToObject(formData);
 	if (isRegister(object)) {

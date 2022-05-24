@@ -8,11 +8,11 @@
 	<Form
 		title="Log in"
 		method="post"
-		action="auth/login"
+		action="/auth/login"
 		on:submit={async (e) => {
+			e.preventDefault();
 			await formPostHandler(e);
 			authenticate();
-			e.preventDefault();
 		}}
 	>
 		<Input placeholder="Enter email" type="email" name="username" required first />

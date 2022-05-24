@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { Form, Input } from '$lib/modules/widgets';
-	import { PasswordMatcher as Password } from './';
-	import { InputField } from '$lib/modules/other';
 	import { authenticate, register } from '$lib/data/auth.store';
 	import { formPostHandler } from '$lib/ts/api';
 	import { afterUpdate } from 'svelte';
@@ -19,24 +17,6 @@
 		secondVal: '',
 	};
 
-	const signUp: User = {
-		username: '',
-		password: '',
-		userInformation: {
-			firstname: '',
-			lastname: '',
-			phone: '',
-			city: '',
-			zipcode: '',
-			street: '',
-		},
-	};
-
-	const handleSubmit = async () => {
-		await register(signUp);
-		await authenticate();
-	};
-
 	afterUpdate(() => {
 		const { firstVal, second, secondVal } = passwords;
 		if (firstVal === secondVal) {
@@ -50,11 +30,11 @@
 <Form
 	title="Sign up"
 	method="post"
-	action="auth/register"
+	action="/auth/register"
 	on:submit={async (e) => {
+		e.preventDefault();
 		await formPostHandler(e);
 		authenticate();
-		e.preventDefault();
 	}}
 >
 	<Input placeholder="Enter email" type="email" name="username" required first />
