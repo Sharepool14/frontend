@@ -23,19 +23,14 @@ export const post: RequestHandler = async ({ request }) => {
 	const object = formDataToObject(formData);
 
 	if (isNewPool(object)) {
-		const createCommunity = await postHandler('/user/community/create', request, {
+		const { status } = await postHandler('/user/community/create', request, {
 			community: { name: object.poolName },
 		});
-		if (createCommunity.status < 400) {
-			const communities = await getHandler('/user/community', request);
-			const [{ id }] = communities.body?.filter((community) => community.name == object.poolName);
-			return {
-				status: 200,
-			};
-		}
+		return {
+			status,
+		};
 	} else if (isItem(object)) {
-		//make sure item.category is a number, this is dumb but necessary
-		object.category = parseInt((<unknown>object.category) as string);
+		object.category = +object.category;
 		const item = object;
 		const { status } = await postHandler('/user/items/create', request, item);
 		return {

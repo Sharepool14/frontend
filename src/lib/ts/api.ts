@@ -40,25 +40,11 @@ const getHandler = async (uri: string, request: Request) => {
 		method,
 		headers,
 	});
-	let data;
-
-	try {
-		data = await res.json();
-	} catch (err) {
-		data = undefined;
-	}
-
-	if (data === undefined) {
-		try {
-			data = await res.text();
-		} catch (err) {
-			data = undefined;
-		}
-	}
 
 	return {
 		status: +res.status,
-		body: data,
+		headers: res.headers,
+		body: await res.json(),
 	};
 };
 
@@ -70,17 +56,11 @@ const postHandler = async <T extends object>(uri: string, request: Request, newB
 		headers,
 		body: JSON.stringify(newBody ? newBody : body),
 	});
-	let data;
-
-	try {
-		data = await res.json();
-	} catch (err) {
-		data = undefined;
-	}
 
 	return {
 		status: +res.status,
-		body: data,
+		headers: res.headers,
+		body: await res.json(),
 	};
 };
 

@@ -2,7 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 import { apiURL, isRegister, postHandler } from '$lib/ts/api';
 import { formDataToObject } from '$lib/ts/global';
 
-export const post = async ({ request }) => {
+export const post: RequestHandler = async ({ request }) => {
 	const formData = await request.formData();
 	const object = formDataToObject(formData);
 	if (isRegister(object)) {
@@ -26,27 +26,20 @@ export const post = async ({ request }) => {
 				method: 'post',
 				body: JSON.stringify({ username, password }),
 			});
-
-			return {
-				status: res.status,
-				headers: res.headers.get('set-cookie'),
-			};
+			if (res.status < 400) {
+				return {
+					status: res.status,
+					headers: res.headers,
+				};
+			} else {
+				return {
+					status: res.status,
+				};
+			}
 		}
 	}
 
 	return {
 		status: 400,
-	};
-	const reqBody = await request.json();
-	const res = await fetch(apiURL + '/user/register', {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json',
-		},
-		body: JSON.stringify(reqBody),
-	});
-
-	return {
-		status: res.status,
 	};
 };

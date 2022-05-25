@@ -10,16 +10,13 @@
 </script>
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-
 	import { pools } from '$lib/data/pools.store';
 	import { Block as Animate } from '$lib/modules/anim';
 	import { Modal } from '$lib/modules/Cards';
-
-	import { NewInvite } from '$lib/modules/other';
 	import { Form, Input } from '$lib/modules/widgets';
 	import { formPostHandler } from '$lib/ts/api';
-	import { onMount } from 'svelte';
 
 	export let members;
 	let thisCommunity;
