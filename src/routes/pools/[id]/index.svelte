@@ -22,6 +22,7 @@
 
 	export let members;
 	export let posts;
+	export let items;
 	let thisCommunity;
 	let modalInvite: Modal;
 	let modalPosts: Modal;
@@ -44,10 +45,11 @@
 		<Modal modalButtonTitle="Invite a new member" bind:this={modalInvite} secondaryColor>
 			<Form
 				title={`Invite new a member to ${thisCommunity?.name}`}
-				on:submit={(e) => {
-					formPostHandler(e);
-					modalInvite.startClose();
+				method="post"
+				on:submit={async (e) => {
 					e.preventDefault();
+					await formPostHandler(e);
+					modalInvite.startClose();
 				}}
 			>
 				<Input
@@ -64,30 +66,44 @@
 	{/if}
 	{#if posts}
 		{#if posts?.length > 0}
-			{#each posts as post}
-				<Post title={post.itemName} description={post.description} borrowed={false} />
-			{/each}
+			<section class="m-x2">
+				{#each posts as post}
+					<Post
+						title={post.itemName}
+						description={post.description}
+						startDate={new Date(post.start_date)}
+						returnDate={new Date(post.return_date)}
+						borrowed={false}
+					/>
+				{/each}
+			</section>
 		{/if}
 		<Modal modalButtonTitle="Create a new post" bind:this={modalPosts} secondaryColor>
 			<Form
-				title={`Invite new a member to ${thisCommunity?.name}`}
+				title={`Post an item to ${thisCommunity?.name}`}
+				method="post"
 				on:submit={async (e) => {
 					e.preventDefault();
-					await formPostHandler(e);
+					formPostHandler(e);
 					modalPosts.startClose();
-					await invalidate($page.url.pathname);
 				}}
 			>
-				<Input
-					placeholder="Enter another users email"
-					type="email"
-					name="email"
-					required={true}
-					bind:value
-					first
-					last
-				/>
+				<Input type="select" name="itemID" required first>
+					<option value="">Please select an item</option>
+					{#each items as item}
+						<option value={item.id}>{item.name}</option>
+					{/each}
+				</Input>
+				<Input type="date" name="startDate" required />
+				<Input type="date" name="returnDate" required last />
 			</Form>
 		</Modal>
 	{/if}
 </Animate>
+
+<style lang="scss">
+	section {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+</style>

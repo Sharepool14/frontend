@@ -10,9 +10,9 @@
 	import { writable } from 'svelte/store';
 	import { linear } from 'svelte/easing';
 
-	const borrowDate = new Date('2022-05-09T11:00:00');
-	const borrowDateTime = borrowDate.getTime();
-	const returnDate = new Date('2022-05-15T11:05:00');
+	export let startDate: Date;
+	export let returnDate: Date;
+	const borrowDateTime = startDate.getTime();
 	const returnDateTime = returnDate.getTime();
 
 	const progress = tweened(0, { duration: 1000 });
@@ -28,7 +28,7 @@
 	};
 
 	$: {
-		$progress = getProgressRatioOffset($time);
+		$progress = Math.round((($time - borrowDateTime) / (returnDateTime - borrowDateTime)) * 253);
 		$returnedIn.seconds = millisToSeconds(returnDateTime - $time);
 		$returnedIn.minutes = millisToMinutes(returnDateTime - $time);
 		$returnedIn.hours = millisToHours(returnDateTime - $time);
@@ -49,13 +49,13 @@
 	<div class="circular__days">
 		<p>
 			{#if $returnedIn.seconds >= 0}
-				Returned in<br />
+				Avalible for<br />
 				{#if $returnedIn.days > 0}{$returnedIn.days}<b>d</b>{/if}
 				{#if $returnedIn.hours > 0}{$returnedIn.hours}<b>h</b>{/if}
 				{#if $returnedIn.minutes > 0}{$returnedIn.minutes}<b>m</b>{/if}
 				{$returnedIn.seconds}<b>s</b>
 			{:else}
-				Overdue
+				Unavailible
 			{/if}
 		</p>
 	</div>

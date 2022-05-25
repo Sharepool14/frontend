@@ -5,16 +5,14 @@
 	export let title: string;
 	export let description: string;
 	export let borrowed: boolean;
+	export let startDate: Date;
+	export let returnDate: Date;
 </script>
 
 <Card hoverable={true}>
 	<div>
 		<h1>{title}</h1>
-		{#if borrowed}
-			<CircularProgressBar />
-		{:else}
-			<img src="https://picsum.photos/800/400" alt="Item" />
-		{/if}
+		<CircularProgressBar {startDate} {returnDate} />
 		<p>{description}</p>
 	</div>
 </Card>
@@ -25,8 +23,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.125rem;
-		img {
-			border-radius: 3rem 0 3rem 0;
-		}
 	}
 </style>

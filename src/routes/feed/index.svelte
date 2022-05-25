@@ -18,28 +18,7 @@
 </script>
 
 <Animate>
-	{#if $hasAccess}
-		<section class="posts minl-auto mb-x2">
-			{#each cards as card}
-				<BorrowPost
-					title="An item"
-					description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
-						quia obcaecati alias."
-					borrowed={true}
-				/>
-				<BorrowPost
-					title="An item"
-					description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia qui, debitis iusto
-						quia obcaecati alias."
-					borrowed={false}
-				/>
-			{/each}
-		</section>
-	{:else}
-		<CardColored --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
-			<h2>You have to be logged in to see this page</h2>
-		</CardColored>
-	{/if}
+	<h1>Work in progress</h1>
 </Animate>
 
 <style lang="scss">
@@ -53,5 +32,8 @@
 		@media screen and (min-width: 1440px) {
 			width: 70vw;
 		}
+	}
+	h1 {
+		font-size: 3rem;
 	}
 </style>

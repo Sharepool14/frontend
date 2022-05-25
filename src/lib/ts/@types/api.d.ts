@@ -22,3 +22,9 @@ declare interface Invite extends LightInvite {
 }
 
 declare interface Register extends Authentication, UserInformation {}
+
+declare interface PostFromForm {
+	itemID: string;
+	startDate: string;
+	returnDate: string;
+}

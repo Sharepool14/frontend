@@ -29,6 +29,10 @@ const isLightInvite = (obj): obj is LightInvite => {
 	return 'inviteID' in obj;
 };
 
+const isPostFromForm = (obj): obj is PostFromForm => {
+	return 'itemID' in obj && 'startDate' in obj && 'returnDate' in obj;
+};
+
 const formPostHandler = async (e: SubmitEvent) => {
 	const res = await fetch((<HTMLFormElement>e.target).action, {
 		method: (<HTMLFormElement>e.target).method,
@@ -84,4 +88,5 @@ export {
 	isOtherUser,
 	isRegister,
 	isLightInvite,
+	isPostFromForm,
 };
