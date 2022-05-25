@@ -17,31 +17,65 @@
 	import { Modal } from '$lib/modules/Cards';
 	import { Form, Input } from '$lib/modules/widgets';
 	import { formPostHandler } from '$lib/ts/api';
+	import { invalidate } from '$app/navigation';
+	import { BorrowPost as Post } from '$lib/modules/other';
 
 	export let members;
+	export let posts;
 	let thisCommunity;
-	let modal: Modal;
+	let modalInvite: Modal;
+	let modalPosts: Modal;
 	let value: string;
+
 	onMount(() => {
 		[thisCommunity] = $pools.filter((pool) => pool.id == $page.params.id);
+		console.log(posts);
 	});
 </script>
 
 <Animate>
 	{#if members}
 		<h1>{thisCommunity?.name}</h1>
-		<ol class="ml-x2">
+		<ol class="ml-x2 mb-x2">
 			{#each members as { username }}
 				<li>{username}</li>
 			{/each}
 		</ol>
-		<Modal modalButtonTitle="Invite a new member" bind:this={modal} secondaryColor>
+		<Modal modalButtonTitle="Invite a new member" bind:this={modalInvite} secondaryColor>
 			<Form
 				title={`Invite new a member to ${thisCommunity?.name}`}
 				on:submit={(e) => {
 					formPostHandler(e);
-					modal.startClose();
+					modalInvite.startClose();
 					e.preventDefault();
+				}}
+			>
+				<Input
+					placeholder="Enter another users email"
+					type="email"
+					name="email"
+					required={true}
+					bind:value
+					first
+					last
+				/>
+			</Form>
+		</Modal>
+	{/if}
+	{#if posts}
+		{#if posts?.length > 0}
+			{#each posts as post}
+				<Post title={post.itemName} description={post.description} borrowed={false} />
+			{/each}
+		{/if}
+		<Modal modalButtonTitle="Create a new post" bind:this={modalPosts} secondaryColor>
+			<Form
+				title={`Invite new a member to ${thisCommunity?.name}`}
+				on:submit={async (e) => {
+					e.preventDefault();
+					await formPostHandler(e);
+					modalPosts.startClose();
+					await invalidate($page.url.pathname);
 				}}
 			>
 				<Input

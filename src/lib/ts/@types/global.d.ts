@@ -18,5 +18,5 @@ declare interface UserInformation {
 }
 
 declare interface User extends Authentication {
-	userDetails: UserInformation;
+	userInformation: UserInformation;
 }

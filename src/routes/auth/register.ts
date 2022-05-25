@@ -11,7 +11,7 @@ export const post: RequestHandler = async ({ request }) => {
 		const { status } = await postHandler('/user/register', request, <User>{
 			username,
 			password,
-			userDetails: {
+			userInformation: {
 				firstname,
 				lastname,
 				phone,

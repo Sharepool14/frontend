@@ -14,15 +14,7 @@
 </script>
 
 <Animate>
-	<p>some stuff</p>
-	<p>
-		Our goal is to make people's lives easier, we have developed a product to make everyday life
-		easier for people.
-	</p>
-	<p>
-		Our goal is to make people's lives easier, we have developed a product to make everyday life
-		easier for people.
-	</p>
+	<h1>Home</h1>
 	<p>
 		Our product gives the opportunity for people to lend or to borrow items from each other.
 		Sharepool has thought of creating groups called communities, on our site we love to belong to a

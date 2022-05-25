@@ -4,7 +4,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 
 export const get: RequestHandler = async ({ request, params }) => {
 	const members = await getHandler(`/communities/${params.id}/members`, request);
-	const posts = await getHandler(`/communities/${params.id}/posts/`, request);
+	const posts = await getHandler(`/user/loan_post/${params.id}/posts`, request);
 	return {
 		status: 200,
 		body: {
