@@ -25,6 +25,10 @@ const isRegister = (obj): obj is Register => {
 	);
 };
 
+const isLightInvite = (obj): obj is LightInvite => {
+	return 'inviteID' in obj;
+};
+
 const formPostHandler = async (e: SubmitEvent) => {
 	const res = await fetch((<HTMLFormElement>e.target).action, {
 		method: (<HTMLFormElement>e.target).method,
@@ -56,11 +60,17 @@ const postHandler = async <T extends object>(uri: string, request: Request, newB
 		headers,
 		body: JSON.stringify(newBody ? newBody : body),
 	});
+	let data;
+	try {
+		data = await res.json();
+	} catch (err) {
+		data = null;
+	}
 
 	return {
 		status: +res.status,
 		headers: res.headers,
-		body: await res.json(),
+		body: data,
 	};
 };
 
@@ -73,4 +83,5 @@ export {
 	isNewPool,
 	isOtherUser,
 	isRegister,
+	isLightInvite,
 };

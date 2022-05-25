@@ -1,4 +1,4 @@
-import { getHandler, isItem, isNewPool, postHandler } from '$lib/ts/api';
+import { getHandler, isItem, isLightInvite, isNewPool, postHandler } from '$lib/ts/api';
 import { formDataToObject } from '$lib/ts/global';
 import type { RequestHandler } from '@sveltejs/kit';
 
@@ -19,20 +19,24 @@ export const get: RequestHandler = async ({ request }) => {
 };
 
 export const post: RequestHandler = async ({ request }) => {
-	const formData = await request.formData();
-	const object = formDataToObject(formData);
+	let object;
+	try {
+		const formData = await request.formData();
+		object = formDataToObject(formData);
+	} catch (err) {
+		object = await request.json();
+		console.log(object);
+	}
 
 	if (isNewPool(object)) {
 		const { status } = await postHandler('/user/community/create', request, {
-			community: { name: object.poolName },
+			name: object.poolName,
 		});
 		return {
 			status,
 		};
-	} else if (isItem(object)) {
-		object.category = +object.category;
-		const item = object;
-		const { status } = await postHandler('/user/items/create', request, item);
+	} else if (isLightInvite(object)) {
+		const { status } = await postHandler(`/user/invite/${object.inviteID}`, request, null);
 		return {
 			status,
 		};
@@ -41,4 +45,14 @@ export const post: RequestHandler = async ({ request }) => {
 	return {
 		status: 400,
 	};
+};
+
+export const del: RequestHandler = async ({ request }) => {
+	const object = await request.json();
+	if (isLightInvite(object)) {
+		const { status } = await postHandler(`/user/invite/${object.inviteID}`, request, null);
+		return {
+			status,
+		};
+	}
 };

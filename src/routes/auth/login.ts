@@ -30,10 +30,9 @@ export const post: RequestHandler = async ({ request }) => {
 	});
 
 	return {
-		status: 302,
+		status: 200,
 		headers: {
 			'set-cookie': [accessToken, refreshToken],
-			location: '/',
 		},
 	};
 };

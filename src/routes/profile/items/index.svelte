@@ -16,6 +16,7 @@
 	import { Card, Modal } from '$lib/modules/cards';
 	import { Form, Input } from '$lib/modules/widgets';
 	import { formPostHandler } from '$lib/ts/api';
+	import { invalidate } from '$app/navigation';
 
 	export let items: any[];
 	let newItem: Modal;
@@ -38,10 +39,11 @@
 			<Form
 				title="Create a new item"
 				method="post"
-				on:submit={(e) => {
-					formPostHandler(e);
-					newItem.startClose();
+				on:submit={async (e) => {
 					e.preventDefault();
+					await formPostHandler(e);
+					newItem.startClose();
+					await invalidate('/profile/items');
 				}}
 			>
 				<Input

@@ -12,7 +12,11 @@ declare type OtherUser = {
 	email: string;
 };
 
-declare interface Invite {
+declare interface LightInvite {
+	inviteID: number;
+}
+
+declare interface Invite extends LightInvite {
 	communityID: number;
 	invitee: string;
 }

@@ -35,10 +35,9 @@
 	let newPool: Modal;
 	let newItem: Modal;
 	$: {
-		//console.log(communities);
-		communities.sort((a, b) => a.id - b.id);
-		items.sort((a, b) => a.id - b.id);
-		invites.sort((a, b) => a.id - b.id);
+		if (communities.length > 0) communities.sort((a, b) => a.id - b.id);
+		if (items.length > 0) items.sort((a, b) => a.id - b.id);
+		if (invites.length > 0) invites.sort((a, b) => a.id - b.id);
 	}
 </script>
 
@@ -78,10 +77,11 @@
 				<Form
 					title="Create a new pool"
 					method="post"
-					on:submit={(e) => {
-						formPostHandler(e);
-						newPool.startClose();
+					on:submit={async (e) => {
 						e.preventDefault();
+						await formPostHandler(e);
+						newPool.startClose();
+						await invalidate('/profile');
 					}}
 				>
 					<Input
@@ -129,7 +129,7 @@
 		<Card --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
 			<h2>Invites</h2>
 			{#if invites.length > 0}
-				<ul>
+				<ul class="ml-x2">
 					{#each invites as invite}
 						<Invite
 							inviteID={invite.id}

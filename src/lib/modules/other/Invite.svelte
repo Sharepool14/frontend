@@ -1,28 +1,27 @@
 <script lang="ts">
 	import { Button } from '$lib/modules/widgets';
-	import { reFetchInvites } from '$lib/data/invites.store';
-	import Cookies from 'js-cookie';
+	import { invalidate } from '$app/navigation';
 
 	export let inviteID: number;
 	export let inviter: string;
 	export let communityName: string;
 	const acceptInvite = async () => {
-		const res = await fetch(`api/user/communities/invites/${inviteID}`, {
+		const res = await fetch(`/profile`, {
 			method: 'POST',
-			headers: { access_token: Cookies.get('access_token') },
+			body: JSON.stringify({ inviteID: inviteID }),
 		});
 		if (res.ok) {
-			reFetchInvites();
+			await invalidate('/profile');
 		}
 	};
 
 	const rejectInvite = async () => {
-		const res = await fetch(`api/user/communities/invites/${inviteID}`, {
+		const res = await fetch(`/profile`, {
 			method: 'DELETE',
-			headers: { access_token: Cookies.get('access_token') },
+			body: JSON.stringify({ invite: inviteID }),
 		});
 		if (res.ok) {
-			reFetchInvites();
+			await invalidate('/profile');
 		}
 	};
 </script>

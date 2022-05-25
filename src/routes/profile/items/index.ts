@@ -1,4 +1,5 @@
-import { getHandler } from '$lib/ts/api';
+import { getHandler, isItem, postHandler } from '$lib/ts/api';
+import { formDataToObject } from '$lib/ts/global';
 import type { RequestHandler } from '@sveltejs/kit';
 import cookie from 'cookie';
 
@@ -10,5 +11,28 @@ export const get: RequestHandler = async ({ request }) => {
 		body: {
 			items: body,
 		},
+	};
+};
+
+export const post: RequestHandler = async ({ request }) => {
+	const formData = await request.formData();
+	const object = formDataToObject(formData);
+	console.log(object);
+	if (isItem(object)) {
+		const item = {
+			name: object.name,
+			description: object.description,
+			category: {
+				id: +object.category,
+			},
+		};
+		console.log(item);
+		const { status } = await postHandler('/user/items/item/create', request, item);
+		return {
+			status,
+		};
+	}
+	return {
+		status: 400,
 	};
 };
