@@ -84,8 +84,9 @@
 				method="post"
 				on:submit={async (e) => {
 					e.preventDefault();
-					formPostHandler(e);
+					await formPostHandler(e);
 					modalPosts.startClose();
+					await invalidate($page.url.pathname);
 				}}
 			>
 				<Input type="select" name="itemID" required first>
