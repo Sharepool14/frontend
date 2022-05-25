@@ -3,6 +3,8 @@
 	import { authenticate, register } from '$lib/data/auth.store';
 	import { formPostHandler } from '$lib/ts/api';
 	import { afterUpdate } from 'svelte';
+	import { invalidate } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	interface Passwords {
 		first: HTMLInputElement;
@@ -34,7 +36,7 @@
 	on:submit={async (e) => {
 		e.preventDefault();
 		await formPostHandler(e);
-		authenticate();
+		await invalidate($page.url.pathname);
 	}}
 >
 	<Input placeholder="Enter email" type="email" name="username" required first />
@@ -62,7 +64,7 @@
 	<Input placeholder="Enter phone number" type="phone" name="phone" required />
 	<Input placeholder="Enter city" type="text" name="city" required />
 	<Input placeholder="Enter zip code" type="text" name="zipcode" required />
-	<Input placeholder="Enter address" type="text" name="address" required last />
+	<Input placeholder="Enter address" type="text" name="street" required last />
 </Form>
 
 <style lang="scss">
