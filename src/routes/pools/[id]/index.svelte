@@ -69,6 +69,7 @@
 			<section class="m-x2">
 				{#each posts as post}
 					<Post
+						id={post.id}
 						title={post.itemName}
 						description={post.description}
 						startDate={new Date(post.start_date)}
