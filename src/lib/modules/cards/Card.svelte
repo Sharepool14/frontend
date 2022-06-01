@@ -20,7 +20,6 @@
 	.hoverable {
 		&:hover {
 			box-shadow: 0.25em 0.25em 0.75em var(--secondary-o);
-			transform: scale(1.05);
 		}
 	}
 </style>

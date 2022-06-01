@@ -4,11 +4,12 @@
 	import * as Auth from '$lib/modules/auth';
 	import { Particles } from '$lib/modules/anim';
 	import { Modal } from '$lib/modules/cards';
-	import { page } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import { Logo } from '$lib/modules/svgs';
 	import { authenticate, hasAccess } from '$lib/data/auth.store';
-	let transitionCleaner: NodeJS.Timer;
+
+	$: console.log($navigating);
 	onMount(() => {
 		authenticate();
 	});
@@ -22,7 +23,7 @@
 <svelte:body />
 
 <Particles />
-
+<Nav.Loading />
 <header>
 	<div class="logo mr-auto">
 		<Logo width="10rem" />

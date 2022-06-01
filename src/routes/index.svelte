@@ -3,6 +3,7 @@
 		stuff.title = 'Home';
 		stuff.description =
 			"The landing page of Sharepool, a website for borrowing and shareing household items within trusted 'pools'";
+
 		return {
 			stuff,
 		};

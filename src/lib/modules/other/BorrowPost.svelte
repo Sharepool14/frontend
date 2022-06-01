@@ -23,7 +23,7 @@
 	};
 </script>
 
-<Card hoverable={true}>
+<Card hoverable>
 	<div>
 		<h1>{title}</h1>
 		<div class="mt-auto">
@@ -40,6 +40,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.125rem;
-		height: 100%;
 	}
 </style>

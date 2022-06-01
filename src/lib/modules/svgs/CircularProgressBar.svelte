@@ -82,6 +82,7 @@
 		}
 
 		width: 80%;
+		min-width: 185px;
 		&__progress {
 			transform: rotate(90deg);
 			max-width: 225px;

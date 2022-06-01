@@ -1,5 +1,9 @@
-export { Particle, formDataToObject };
+export { Particle, formDataToObject, sleep };
 export type { Speed2D };
+
+function sleep(ms) {
+	return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}
 
 const formDataToObject = <Type>(formData: FormData) => {
 	const object = {};

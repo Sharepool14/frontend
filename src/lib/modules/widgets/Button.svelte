@@ -34,7 +34,7 @@
 	style:cssVariables
 	bind:this={button}
 >
-	<span class="text p-x0_5"><slot /></span>
+	<span class="text"><slot /></span>
 	<span class="ripple" bind:this={ripple} on:mouseover={(e) => rippleStart(e)} />
 </button>
 
@@ -43,15 +43,16 @@
 		position: relative;
 		--color: var(--button-color, var(--primary));
 		--border-radius: 0.5em;
-		color: white;
 		font-weight: 500;
 		overflow: hidden;
-		display: flex;
-		align-content: center;
-		justify-content: center;
+		font-size: inherit;
+		height: 2.5em;
+		padding: 0.5em;
+
+		display: grid;
+		place-items: center;
 		border-radius: var(--border-radius);
 		border: 3px solid transparent;
-		font-size: inherit;
 		transition: border-radius 300ms ease-in-out, border-color 300ms ease,
 			background-color 300ms ease, color 300ms ease, font-weight 300ms ease-in-out;
 
@@ -80,8 +81,6 @@
 		.text {
 			position: relative;
 			z-index: 10000;
-			width: 100%;
-			height: 100%;
 		}
 
 		&.important {

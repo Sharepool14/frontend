@@ -8,7 +8,8 @@ export const get: RequestHandler = async ({ request }) => {
 	const items = await getHandler('/user/items', request);
 	const invites = await getHandler('/user/invite', request);
 	const itemRequests = await getHandler('/user/loan/othersInvite', request);
-
+	const posts = await getHandler('/user/community/user/posts', request);
+	console.log(posts);
 	return {
 		body: {
 			info: info.body,
