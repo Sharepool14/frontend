@@ -26,5 +26,9 @@ declare interface Register extends Authentication, UserInformation {}
 declare interface PostFromForm {
 	itemID: string;
 	startDate: string;
-	returnDate: string;
+	endDate: string;
 }
+
+declare type ItemRequest = {
+	postID: number;
+};

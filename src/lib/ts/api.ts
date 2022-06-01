@@ -30,7 +30,11 @@ const isLightInvite = (obj): obj is LightInvite => {
 };
 
 const isPostFromForm = (obj): obj is PostFromForm => {
-	return 'itemID' in obj && 'startDate' in obj && 'returnDate' in obj;
+	return 'itemID' in obj && 'startDate' in obj && 'endDate' in obj;
+};
+
+const isItemRequest = (obj): obj is ItemRequest => {
+	return 'postID' in obj;
 };
 
 const formPostHandler = async (e: SubmitEvent) => {
@@ -89,4 +93,5 @@ export {
 	isRegister,
 	isLightInvite,
 	isPostFromForm,
+	isItemRequest,
 };

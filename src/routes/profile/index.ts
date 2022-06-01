@@ -7,6 +7,7 @@ export const get: RequestHandler = async ({ request }) => {
 	const communities = await getHandler('/user/community', request);
 	const items = await getHandler('/user/items', request);
 	const invites = await getHandler('/user/invite', request);
+	const itemRequests = await getHandler('/user/loan/othersInvite', request);
 
 	return {
 		body: {
@@ -14,6 +15,7 @@ export const get: RequestHandler = async ({ request }) => {
 			communities: communities.body,
 			items: items.body,
 			invites: invites.body,
+			requests: itemRequests.body,
 		},
 	};
 };
@@ -25,7 +27,6 @@ export const post: RequestHandler = async ({ request }) => {
 		object = formDataToObject(formData);
 	} catch (err) {
 		object = await request.json();
-		console.log(object);
 	}
 
 	if (isNewPool(object)) {

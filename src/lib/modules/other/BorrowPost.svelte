@@ -10,7 +10,7 @@
 	export let description: string;
 	export let borrowed: boolean;
 	export let startDate: Date;
-	export let returnDate: Date;
+	export let endDate: Date;
 
 	const handleClick = async () => {
 		console.log($page.url.pathname);
@@ -26,9 +26,11 @@
 <Card hoverable={true}>
 	<div>
 		<h1>{title}</h1>
-		<CircularProgressBar {startDate} {returnDate} />
+		<div class="mt-auto">
+			<CircularProgressBar {startDate} {endDate} />
+		</div>
 		<p>{description}</p>
-		<Button>Request item (NYI)</Button>
+		<Button on:buttonClicked={handleClick}>Request item</Button>
 	</div>
 </Card>
 
@@ -38,5 +40,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.125rem;
+		height: 100%;
 	}
 </style>

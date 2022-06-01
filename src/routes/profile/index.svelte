@@ -25,7 +25,7 @@
 	export let communities: any[];
 	export let items: any[];
 	export let invites: any[];
-	export let message;
+	export let requests;
 
 	interface ModalForm {
 		modal: Modal;
@@ -38,6 +38,7 @@
 		if (communities.length > 0) communities.sort((a, b) => a.id - b.id);
 		if (items.length > 0) items.sort((a, b) => a.id - b.id);
 		if (invites.length > 0) invites.sort((a, b) => a.id - b.id);
+		console.log(requests);
 	}
 </script>
 
@@ -111,7 +112,7 @@
 			</a>
 		</Card>
 		<Card --color={'var(--primary)'} --dark={'var(--primary-dark)'}>
-			<h2>Messages</h2>
+			<h2>Requests</h2>
 			<p>
 				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti nobis quaerat natus nemo
 				obcaecati, quae voluptatem provident earum incidunt quod animi sint, ea facere. Quisquam

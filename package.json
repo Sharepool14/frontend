@@ -1,6 +1,9 @@
 {
 	"name": "svelte-node-template",
 	"version": "0.0.1",
+	"quokka": {
+		"babel": true
+	},
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -22,9 +25,9 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/adapter-node": "^1.0.0-next.73",
 		"@sveltejs/kit": "1.0.0-next.328",
-		"@types/node": "^17.0.23",
 		"@types/cookie": "^0.5.1",
 		"@types/js-cookie": "^3.0.2",
+		"@types/node": "^17.0.23",
 		"@typescript-eslint/eslint-plugin": "^5.10.1",
 		"@typescript-eslint/parser": "^5.10.1",
 		"autoprefixer": "^10.4.4",

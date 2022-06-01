@@ -1,24 +1,42 @@
 <script lang="ts" context="module">
-	export async function load({ stuff }) {
+	export async function load({ stuff, props }) {
 		stuff.title = 'Feed';
 		stuff.description = 'Where you go to share and borrow household items between pools';
 		return {
 			stuff,
+			props,
 		};
 	}
 </script>
 
 <script lang="ts">
-	import { BorrowPost } from '$lib/modules/other';
+	import { BorrowPost as Post } from '$lib/modules/other';
 	import { Block as Animate } from '$lib/modules/anim';
 	import { CardColored } from '$lib/modules/cards';
 	import { hasAccess } from '$lib/data/auth.store';
+	import { onMount } from 'svelte';
 
-	let cards = new Array<string>(50);
+	export let posts;
+	onMount(() => {
+		console.log(posts);
+	});
 </script>
 
 <Animate>
-	<h1>Work in progress</h1>
+	{#if posts}
+		<div class="posts minl-auto">
+			{#each posts as post}
+				<Post
+					id={post.id}
+					title={post.item.name}
+					description={post.item.description}
+					startDate={new Date(post.start_date)}
+					endDate={new Date(post.return_date)}
+					borrowed={false}
+				/>
+			{/each}
+		</div>
+	{/if}
 </Animate>
 
 <style lang="scss">

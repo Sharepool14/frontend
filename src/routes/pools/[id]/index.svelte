@@ -10,9 +10,7 @@
 </script>
 
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { pools } from '$lib/data/pools.store';
 	import { Block as Animate } from '$lib/modules/anim';
 	import { Modal } from '$lib/modules/Cards';
 	import { Form, Input } from '$lib/modules/widgets';
@@ -20,23 +18,18 @@
 	import { invalidate } from '$app/navigation';
 	import { BorrowPost as Post } from '$lib/modules/other';
 
+	export let community;
 	export let members;
 	export let posts;
 	export let items;
-	let thisCommunity;
 	let modalInvite: Modal;
 	let modalPosts: Modal;
 	let value: string;
-
-	onMount(() => {
-		[thisCommunity] = $pools.filter((pool) => pool.id == $page.params.id);
-		console.log(posts);
-	});
 </script>
 
 <Animate>
 	{#if members}
-		<h1>{thisCommunity?.name}</h1>
+		<h1>{community?.name}</h1>
 		<ol class="ml-x2 mb-x2">
 			{#each members as { username }}
 				<li>{username}</li>
@@ -44,7 +37,7 @@
 		</ol>
 		<Modal modalButtonTitle="Invite a new member" bind:this={modalInvite} secondaryColor>
 			<Form
-				title={`Invite new a member to ${thisCommunity?.name}`}
+				title={`Invite new a member to ${community?.name}`}
 				method="post"
 				on:submit={async (e) => {
 					e.preventDefault();
@@ -73,7 +66,7 @@
 						title={post.itemName}
 						description={post.description}
 						startDate={new Date(post.start_date)}
-						returnDate={new Date(post.return_date)}
+						endDate={new Date(post.return_date)}
 						borrowed={false}
 					/>
 				{/each}
@@ -81,7 +74,7 @@
 		{/if}
 		<Modal modalButtonTitle="Create a new post" bind:this={modalPosts} secondaryColor>
 			<Form
-				title={`Post an item to ${thisCommunity?.name}`}
+				title={`Post an item to ${community?.name}`}
 				method="post"
 				on:submit={async (e) => {
 					e.preventDefault();
@@ -97,7 +90,7 @@
 					{/each}
 				</Input>
 				<Input type="date" name="startDate" required />
-				<Input type="date" name="returnDate" required last />
+				<Input type="date" name="endDate" required last />
 			</Form>
 		</Modal>
 	{/if}
