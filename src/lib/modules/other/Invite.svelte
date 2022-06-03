@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { Button } from '$lib/modules/widgets';
 	import { invalidate } from '$app/navigation';
+	import Fa from 'svelte-fa';
+	import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+	const acceptIcon = faCheck;
+	const rejectIcon = faXmark;
 
 	export let inviteID: number;
 	export let inviter: string;
@@ -30,9 +35,10 @@
 	<span>
 		{inviter} invited you to {communityName}
 		<Button important on:buttonClicked={() => acceptInvite()} --button-color="var(--secondary)"
-			>Accept</Button
+			><Fa icon={acceptIcon} scale={1.35} fw /></Button
 		>
-		<Button important={false} on:buttonClicked={() => rejectInvite()}>Reject</Button>
+		<Button on:buttonClicked={() => rejectInvite()}><Fa icon={rejectIcon} scale={1.35} fw /></Button
+		>
 	</span>
 </li>
 

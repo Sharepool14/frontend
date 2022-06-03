@@ -9,7 +9,6 @@
 	import { Logo } from '$lib/modules/svgs';
 	import { authenticate, hasAccess } from '$lib/data/auth.store';
 
-	$: console.log($navigating);
 	onMount(() => {
 		authenticate();
 	});

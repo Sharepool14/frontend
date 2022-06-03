@@ -19,7 +19,10 @@
 	import { invalidate } from '$app/navigation';
 
 	export let items: any[];
+	export let categories: any[];
 	let newItem: Modal;
+
+	$: categories?.sort((a, b) => a.id - b.id);
 </script>
 
 <Animate>
@@ -66,8 +69,9 @@
 				/>
 				<Input type="select" name="category" required last>
 					<option value="">Please select a category</option>
-					<option value="1">Möbler</option>
-					<option value="2">Elektronik</option>
+					{#each categories as category}
+						<option value={category.id}>{category.type}</option>
+					{/each}
 				</Input>
 			</Form>
 		</Modal>

@@ -7,10 +7,14 @@ export const get: RequestHandler = async ({ request, params }) => {
 	const members = await getHandler(`/communities/${params.id}/members`, request);
 	const posts = await getHandler(`/user/loan_post/${params.id}/posts`, request);
 	const items = await getHandler('/user/items', request);
-	console.log(communities.body);
-	const [community] = (communities.body as Array<any>).filter(
-		(community) => community.id == params.id
-	);
+
+	let community;
+	try {
+		[community] = (communities.body as Array<any>).filter((community) => community.id == params.id);
+	} catch (err) {
+		console.warn(err);
+	}
+
 	return {
 		status: 200,
 		body: {

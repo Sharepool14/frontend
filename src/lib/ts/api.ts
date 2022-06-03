@@ -37,6 +37,10 @@ const isItemRequest = (obj): obj is ItemRequest => {
 	return 'postID' in obj;
 };
 
+const isLoanRequest = (obj): obj is LoanRequest => {
+	return 'requestID' in obj;
+};
+
 const formPostHandler = async (e: SubmitEvent) => {
 	const res = await fetch((<HTMLFormElement>e.target).action, {
 		method: (<HTMLFormElement>e.target).method,
@@ -52,11 +56,17 @@ const getHandler = async (uri: string, request: Request) => {
 		method,
 		headers,
 	});
+	let data;
+	try {
+		data = await res.json();
+	} catch (err) {
+		data = null;
+	}
 
 	return {
 		status: +res.status,
 		headers: res.headers,
-		body: await res.json(),
+		body: data,
 	};
 };
 
@@ -94,4 +104,5 @@ export {
 	isLightInvite,
 	isPostFromForm,
 	isItemRequest,
+	isLoanRequest,
 };

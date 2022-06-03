@@ -29,7 +29,7 @@
 		width: var(--size);
 		height: var(--size);
 		border-radius: 50%;
-		background-color: var(--primary);
+		background-color: var(--secondary);
 		animation: load 1s ease-in-out alternate infinite;
 		@keyframes load {
 			0% {

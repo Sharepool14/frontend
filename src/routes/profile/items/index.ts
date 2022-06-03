@@ -5,11 +5,13 @@ import cookie from 'cookie';
 
 export const get: RequestHandler = async ({ request }) => {
 	const { status, body } = await getHandler('/user/items', request);
-
+	const categories = await getHandler('/user/category/all', request);
+	console.log(categories.body);
 	return {
 		status,
 		body: {
 			items: body,
+			categories: categories.body,
 		},
 	};
 };

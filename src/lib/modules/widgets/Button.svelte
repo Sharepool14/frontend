@@ -42,13 +42,14 @@
 	button {
 		position: relative;
 		--color: var(--button-color, var(--primary));
+		--text-clr: var(--text-color, white);
 		--border-radius: 0.5em;
 		font-weight: 500;
 		overflow: hidden;
 		font-size: inherit;
 		height: 2.5em;
 		padding: 0.5em;
-
+		color: var(--text-clr);
 		display: grid;
 		place-items: center;
 		border-radius: var(--border-radius);

@@ -32,3 +32,7 @@ declare interface PostFromForm {
 declare type ItemRequest = {
 	postID: number;
 };
+
+declare type LoanRequest = {
+	requestID: number;
+};

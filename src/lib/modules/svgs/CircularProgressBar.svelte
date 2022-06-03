@@ -15,7 +15,7 @@
 	const borrowDateTime = startDate.getTime();
 	const endDateTime = endDate.getTime();
 
-	const progress = tweened(0, { duration: 1000 });
+	const progress = tweened(253, { duration: 1000 });
 	const returnedIn = writable({
 		days: 0,
 		hours: 0,

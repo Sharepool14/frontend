@@ -1,4 +1,11 @@
-import { getHandler, isItem, isLightInvite, isNewPool, postHandler } from '$lib/ts/api';
+import {
+	getHandler,
+	isItem,
+	isLightInvite,
+	isLoanRequest,
+	isNewPool,
+	postHandler,
+} from '$lib/ts/api';
 import { formDataToObject } from '$lib/ts/global';
 import type { RequestHandler } from '@sveltejs/kit';
 
@@ -8,15 +15,37 @@ export const get: RequestHandler = async ({ request }) => {
 	const items = await getHandler('/user/items', request);
 	const invites = await getHandler('/user/invite', request);
 	const itemRequests = await getHandler('/user/loan/othersInvite', request);
-	const posts = await getHandler('/user/community/user/posts', request);
-	console.log(posts);
+	const posts = await getHandler('/user/loan_post/', request);
+	const loansAndRequests = await getHandler('/user/loan/myLoanOrReq', request);
+
+	console.log('my loans: ', loansAndRequests.body);
+	console.log('my posts: ', posts.body);
+	const requestData = [];
+	const loansData = [];
+	const requests = itemRequests.body;
+
+	if (requests && requests?.length > 0) {
+		requests.forEach((request) => {
+			const post = posts?.body.find((post) => post.id == request.loan_post_id);
+			if (!request.accepted) {
+				requestData.push({
+					community: post?.communityName,
+					item: post?.itemName,
+					requester: request.requesterName,
+					requestID: request.id,
+				});
+			} else {
+				loansData.push({});
+			}
+		});
+	}
 	return {
 		body: {
 			info: info.body,
 			communities: communities.body,
 			items: items.body,
 			invites: invites.body,
-			requests: itemRequests.body,
+			requests: requestData,
 		},
 	};
 };
@@ -38,7 +67,12 @@ export const post: RequestHandler = async ({ request }) => {
 			status,
 		};
 	} else if (isLightInvite(object)) {
-		const { status } = await postHandler(`/user/invite/${object.inviteID}`, request, null);
+		const { status } = await postHandler(`/user/invite/${object.inviteID}`, request);
+		return {
+			status,
+		};
+	} else if (isLoanRequest(object)) {
+		const { status } = await postHandler(`/user/loan/${object.requestID}`, request);
 		return {
 			status,
 		};
@@ -52,7 +86,12 @@ export const post: RequestHandler = async ({ request }) => {
 export const del: RequestHandler = async ({ request }) => {
 	const object = await request.json();
 	if (isLightInvite(object)) {
-		const { status } = await postHandler(`/user/invite/${object.inviteID}`, request, null);
+		const { status } = await postHandler(`/user/invite/${object.inviteID}`, request);
+		return {
+			status,
+		};
+	} else if (isLoanRequest(object)) {
+		const { status } = await postHandler(`/user/loan/${object.requestID}`, request);
 		return {
 			status,
 		};

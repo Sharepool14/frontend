@@ -17,6 +17,7 @@
 	import { formPostHandler } from '$lib/ts/api';
 	import { invalidate } from '$app/navigation';
 	import { BorrowPost as Post } from '$lib/modules/other';
+	import { onMount } from 'svelte';
 
 	export let community;
 	export let members;
@@ -30,32 +31,34 @@
 <Animate>
 	{#if members}
 		<h1>{community?.name}</h1>
-		<ol class="ml-x2 mb-x2">
+		<ol class="ml-x2 mb-x1">
 			{#each members as { username }}
 				<li>{username}</li>
 			{/each}
 		</ol>
-		<Modal modalButtonTitle="Invite a new member" bind:this={modalInvite} secondaryColor>
-			<Form
-				title={`Invite new a member to ${community?.name}`}
-				method="post"
-				on:submit={async (e) => {
-					e.preventDefault();
-					await formPostHandler(e);
-					modalInvite.startClose();
-				}}
-			>
-				<Input
-					placeholder="Enter another users email"
-					type="email"
-					name="email"
-					required={true}
-					bind:value
-					first
-					last
-				/>
-			</Form>
-		</Modal>
+		<div class="mblk-x1">
+			<Modal modalButtonTitle="Invite a new member" bind:this={modalInvite}>
+				<Form
+					title={`Invite new a member to ${community?.name}`}
+					method="post"
+					on:submit={async (e) => {
+						e.preventDefault();
+						await formPostHandler(e);
+						modalInvite.startClose();
+					}}
+				>
+					<Input
+						placeholder="Enter another users email"
+						type="email"
+						name="email"
+						required={true}
+						bind:value
+						first
+						last
+					/>
+				</Form>
+			</Modal>
+		</div>
 	{/if}
 	{#if posts}
 		{#if posts?.length > 0}
@@ -72,7 +75,7 @@
 				{/each}
 			</section>
 		{/if}
-		<Modal modalButtonTitle="Create a new post" bind:this={modalPosts} secondaryColor>
+		<Modal modalButtonTitle="Create a new post" bind:this={modalPosts}>
 			<Form
 				title={`Post an item to ${community?.name}`}
 				method="post"
