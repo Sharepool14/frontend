@@ -58,6 +58,7 @@
 		span {
 			display: inline-flex;
 			gap: 1rem;
+			align-items: center;
 		}
 	}
 </style>

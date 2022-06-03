@@ -46,6 +46,7 @@
 	li {
 		span {
 			display: inline-flex;
+			align-items: center;
 			gap: 1rem;
 		}
 	}
