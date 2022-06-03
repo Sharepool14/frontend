@@ -19,6 +19,18 @@
 		secondVal: '',
 	};
 
+	let username: string;
+
+	const login = async () => {
+		const res = await fetch('/auth/login', {
+			method: 'post',
+			body: JSON.stringify({
+				username,
+				password: passwords.secondVal,
+			}),
+		});
+	};
+
 	afterUpdate(() => {
 		const { firstVal, second, secondVal } = passwords;
 		if (firstVal === secondVal) {
@@ -36,10 +48,18 @@
 	on:submit={async (e) => {
 		e.preventDefault();
 		await formPostHandler(e);
-		await invalidate($page.url.pathname);
+		await login();
+		await authenticate();
 	}}
 >
-	<Input placeholder="Enter email" type="email" name="username" required first />
+	<Input
+		placeholder="Enter email"
+		type="email"
+		name="username"
+		bind:value={username}
+		required
+		first
+	/>
 	<div>
 		<Input
 			placeholder="Enter password"

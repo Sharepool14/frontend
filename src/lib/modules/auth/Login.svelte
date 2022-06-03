@@ -12,7 +12,7 @@
 		on:submit={async (e) => {
 			e.preventDefault();
 			await formPostHandler(e);
-			authenticate();
+			await authenticate();
 		}}
 	>
 		<Input placeholder="Enter email" type="email" name="username" required first />
