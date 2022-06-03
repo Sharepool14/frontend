@@ -11,11 +11,11 @@ export const post: RequestHandler = async ({ request }) => {
 	} catch (err) {
 		object = <Authentication>await request.json();
 	}
-	console.log(object);
+
 	const { username, password } = object;
 
 	const { status, body } = await postHandler('/login', request, { username, password });
-	console.log(body);
+
 	if (status >= 400) {
 		return { status };
 	}

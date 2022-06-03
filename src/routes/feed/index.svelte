@@ -17,9 +17,6 @@
 	import { onMount } from 'svelte';
 
 	export let posts;
-	onMount(() => {
-		console.log(posts);
-	});
 </script>
 
 <Animate>

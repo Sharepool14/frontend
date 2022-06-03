@@ -34,7 +34,6 @@ export const post: RequestHandler = async ({ request, params }) => {
 	} catch (err) {
 		object = await request.json();
 	}
-	console.log(object);
 
 	if (isOtherUser(object)) {
 		const { status } = await postHandler(
@@ -60,7 +59,6 @@ export const post: RequestHandler = async ({ request, params }) => {
 		};
 	} else if (isItemRequest(object)) {
 		const { status } = await postHandler(`/user/loan/${object.postID}/request`, request);
-		console.log(status);
 		return { status };
 	}
 	return {

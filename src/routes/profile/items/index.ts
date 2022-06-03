@@ -6,7 +6,7 @@ import cookie from 'cookie';
 export const get: RequestHandler = async ({ request }) => {
 	const { status, body } = await getHandler('/user/items', request);
 	const categories = await getHandler('/user/category/all', request);
-	console.log(categories.body);
+
 	return {
 		status,
 		body: {
@@ -19,7 +19,7 @@ export const get: RequestHandler = async ({ request }) => {
 export const post: RequestHandler = async ({ request }) => {
 	const formData = await request.formData();
 	const object = formDataToObject(formData);
-	console.log(object);
+
 	if (isItem(object)) {
 		const item = {
 			name: object.name,
@@ -28,7 +28,7 @@ export const post: RequestHandler = async ({ request }) => {
 				id: +object.category,
 			},
 		};
-		console.log(item);
+
 		const { status } = await postHandler('/user/items/item/create', request, item);
 		return {
 			status,

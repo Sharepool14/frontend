@@ -18,8 +18,6 @@ export const get: RequestHandler = async ({ request }) => {
 	const posts = await getHandler('/user/loan_post/', request);
 	const loansAndRequests = await getHandler('/user/loan/myLoanOrReq', request);
 
-	console.log('my loans: ', loansAndRequests.body);
-	console.log('my posts: ', posts.body);
 	const requestData = [];
 	const loansData = [];
 	const requests = itemRequests.body;
