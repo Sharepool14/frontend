@@ -15,11 +15,11 @@
 	import { hasAccess } from '$lib/data/auth.store';
 	import { CardColored } from '$lib/modules/cards';
 
-	export let posts;
+	export let posts: any[];
 </script>
 
 <Animate>
-	{#if posts && posts.length > 0}
+	{#if posts && posts?.length > 0}
 		<div class="posts minl-auto">
 			{#each posts as post}
 				<Post

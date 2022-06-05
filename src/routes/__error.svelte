@@ -11,16 +11,19 @@
 </script>
 
 <script lang="ts">
+	import { Block as Animate } from '$lib/modules/anim';
 	export let error: Error;
 </script>
 
-{#if error.cause}
-	<h1>{`${error.name}: ${error.cause}`}</h1>
-{:else}
-	<h1>{error.name}</h1>
-{/if}
-<h2>{error.message}</h2>
-<p class="stack">{error.stack}</p>
+<Animate>
+	{#if error.cause}
+		<h1>{`${error.name}: ${error.cause}`}</h1>
+	{:else}
+		<h1>{error.name}</h1>
+	{/if}
+	<h2>{error.message}</h2>
+	<p class="stack">{error.stack}</p>
+</Animate>
 
 <style laneg="scss">
 	.stack {
