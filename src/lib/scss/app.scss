@@ -1,0 +1,87 @@
+@use './utilities';
+@use 'sass:color';
+@use './colors';
+
+:root {
+	--text-color: white;
+	--stage: #{colors.$stage};
+
+	--primary: #{colors.$primary};
+	--secondary: #{colors.$secondary};
+
+	--primary-dark: #{colors.$primary-dark};
+	--secondary-dark: #{colors.$secondary-dark};
+
+	--stageHSL: #{colors.$stageHSL};
+	--primaryHSL: #{colors.$primaryHSL};
+	--secondaryHSl: #{colors.$secondaryHSL};
+
+	/*
+	@media (prefers-color-scheme: light) {
+		--text-color: #{colors.$stage};
+		--stage: white;
+	}
+	*/
+}
+
+* {
+	max-width: 100%;
+	max-width: 100%;
+	z-index: unset;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	scroll-behavior: smooth;
+}
+
+*:focus {
+	outline: none;
+}
+
+body {
+	background-color: var(--stage);
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+h1,
+h2,
+h3,
+h4,
+a,
+p,
+li,
+button,
+label {
+	color: var(--text-color);
+	font-family: sans-serif;
+}
+
+textarea {
+	font-family: sans-serif;
+	resize: none;
+}
+
+pre {
+	color: var(--text-color);
+}
+
+button {
+	background: unset;
+	border-width: 0;
+	cursor: pointer;
+	width: fit-content;
+}
+
+button[disabled] {
+	cursor: not-allowed;
+}

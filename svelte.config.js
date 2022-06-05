@@ -6,12 +6,20 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess({
-		postcss: true
+		scss: {
+			renderSync: true,
+		},
+		postcss: true,
 	}),
 
 	kit: {
-		adapter: adapter()
-	}
+		adapter: adapter(),
+		vite: {
+			ssr: {
+				noExternal: ['@fortawesome/*'],
+			},
+		},
+	},
 };
 
 export default config;
