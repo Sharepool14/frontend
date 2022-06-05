@@ -2,7 +2,6 @@
 	import { fly } from 'svelte/transition';
 	export let annimationSpeed = 500;
 	export let x = 50;
-	export let y = 50;
 </script>
 
 <div

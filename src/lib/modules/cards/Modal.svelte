@@ -45,12 +45,7 @@
 </script>
 
 {#if secondaryColor}
-	<Button
-		on:buttonClicked={openModal}
-		{important}
-		--button-color={'var(--secondary)'}
-		--text-color={'var(--stage)'}
-	>
+	<Button on:buttonClicked={openModal} {important} --button-color={'var(--secondary)'}>
 		{modalButtonTitle}
 	</Button>
 {:else}

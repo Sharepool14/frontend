@@ -34,11 +34,12 @@
 <li>
 	<span>
 		{inviter} invited you to {communityName}
-		<Button important on:buttonClicked={() => acceptInvite()} --button-color="var(--secondary)"
-			><Fa icon={acceptIcon} scale={1.35} fw /></Button
-		>
-		<Button on:buttonClicked={() => rejectInvite()}><Fa icon={rejectIcon} scale={1.35} fw /></Button
-		>
+		<Button important on:buttonClicked={() => acceptInvite()} --button-color="var(--secondary)">
+			<Fa icon={acceptIcon} scale={1.35} fw />
+		</Button>
+		<Button on:buttonClicked={() => rejectInvite()}>
+			<Fa icon={rejectIcon} scale={1.35} fw />
+		</Button>
 	</span>
 </li>
 

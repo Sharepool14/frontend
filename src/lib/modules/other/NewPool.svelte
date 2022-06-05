@@ -5,10 +5,6 @@
 
 	let value: string;
 	let modal: Modal;
-
-	const handleSubmit = async () => {
-		modal.startClose();
-	};
 </script>
 
 <Modal modalButtonTitle="New pool" bind:this={modal} secondaryColor>

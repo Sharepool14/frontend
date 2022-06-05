@@ -17,7 +17,6 @@
 	import { formPostHandler } from '$lib/ts/api';
 	import { invalidate } from '$app/navigation';
 	import { BorrowPost as Post } from '$lib/modules/other';
-	import { onMount } from 'svelte';
 
 	export let community;
 	export let members;

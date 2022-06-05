@@ -41,6 +41,14 @@ const isLoanRequest = (obj): obj is LoanRequest => {
 	return 'requestID' in obj;
 };
 
+/**
+ * A function for handling a post request from a HTMLFormElement
+ * @author Theo Johansson
+ * @async
+ * @param {SubmitEvent} e
+ * @returns the status code of the http call
+ * @see HTMLFormElement
+ */
 const formPostHandler = async (e: SubmitEvent) => {
 	const res = await fetch((<HTMLFormElement>e.target).action, {
 		method: (<HTMLFormElement>e.target).method,
@@ -49,6 +57,14 @@ const formPostHandler = async (e: SubmitEvent) => {
 	return res.status;
 };
 
+/**
+ * a function for handleing http get requests
+ * @author Theo Johansson
+ * @async
+ * @param uri the uri of the requested resource
+ * @param request the request from SvelteKit
+ * @returns the data status and headers of the http request
+ */
 const getHandler = async (uri: string, request: Request) => {
 	const { method, headers } = request;
 	headers.set('content-type', 'application/json');
@@ -70,6 +86,15 @@ const getHandler = async (uri: string, request: Request) => {
 	};
 };
 
+/**
+ * a function for handleing http post requests
+ * @author Theo Johansson
+ * @async
+ * @param uri the uri of the requested resource
+ * @param request the request from SvelteKit
+ * @param {T extends object} newBody an optional override for the request body
+ * @returns the data status and headers of the http request
+ */
 const postHandler = async <T extends object>(uri: string, request: Request, newBody?: T) => {
 	const { method, headers, body } = request;
 	headers.set('content-type', 'application/json');

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Form, Input } from '$lib/modules/widgets';
-	import { authenticate, register } from '$lib/data/auth.store';
+	import { authenticate } from '$lib/data/auth.store';
 	import { formPostHandler } from '$lib/ts/api';
 	import { afterUpdate } from 'svelte';
 	import { invalidate } from '$app/navigation';

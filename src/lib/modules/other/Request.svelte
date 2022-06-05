@@ -14,7 +14,6 @@
 	export let communityName: string;
 
 	const handleAccept = async (id) => {
-		console.log($page.url.pathname);
 		const res = await fetch($page.url.pathname, {
 			method: 'post',
 			body: JSON.stringify({
@@ -44,12 +43,12 @@
 <li>
 	<span>
 		{requester} from {communityName} requested your {item}
-		<Button on:buttonClicked={() => handleAccept(requestID)} --button-color="var(--secondary)"
-			><Fa icon={acceptIcon} scale={1.35} fw /></Button
-		>
-		<Button on:buttonClicked={() => handleReject(requestID)}
-			><Fa icon={rejectIcon} scale={1.35} fw /></Button
-		>
+		<Button on:buttonClicked={() => handleAccept(requestID)} --button-color="var(--secondary)">
+			<Fa icon={acceptIcon} scale={1.35} fw />
+		</Button>
+		<Button on:buttonClicked={() => handleReject(requestID)}>
+			<Fa icon={rejectIcon} scale={1.35} fw />
+		</Button>
 	</span>
 </li>
 

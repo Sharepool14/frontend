@@ -8,7 +8,6 @@
 	} from '$lib/data/clock.store';
 	import { tweened } from 'svelte/motion';
 	import { writable } from 'svelte/store';
-	import { linear } from 'svelte/easing';
 
 	export let startDate: Date;
 	export let endDate: Date;
